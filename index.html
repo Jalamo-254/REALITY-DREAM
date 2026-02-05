@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reality Dream Institute - Skills. Progress. Prosperity!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Poppins', sans-serif; background-color: #F8F9FA; color: #333333; overflow-x: hidden;">
+    
+    <!-- Navigation - Simple transparent design -->
+    <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826;">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap justify-between items-center">
+                <!-- logo image --> 
+                <div class="flex items-center space-x itemsc-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center">
+                        <img src="/logo.svg" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+                        <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop menu -->
+                <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
+                    <a href="#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
+                    <a href="#courses" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
+                    <a href="#fees" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+                    <a href="#contact" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+                    
+                    <!-- Buttons Container inside Nav - Smaller buttons -->
+                    <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
+                        <!-- Download Brochure Button -->
+                        <button class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf text-xs"></i>
+                            <span class="hidden sm:inline">Brochure</span>
+                        </button>
+                        
+                        <!-- Enroll Now Button -->
+                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate text-xs"></i>
+                            <span class="hidden sm:inline">Enroll</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+                    <a href="#courses" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="#fees" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+                    <a href="#contact" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    
+                    <!-- Mobile Buttons -->
+                    <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
+                        <button class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Download Brochure</span>
+                        </button>
+                        
+                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Enroll Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section  -->
+    <section id="home" class="py-10 md:py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #121826 0%, #2A2F3C 100%); color: white;">
+        <!-- Background image container -->
+        <div class="absolute inset-0 w-full h-full">
+            <img 
+                src="/daniel-thomas-HA-0i0E7sq4-unsplash.jpg" 
+                alt="picture of lady having graduated and happy"
+                class="w-full h-full object-cover opacity-70"
+            >
+        </div>
+        
+        <!-- Content container -->
+        <div class="container mx-auto px-4 md:px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-6 lg:mb-0 mobile-center">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center px-3 py-1 md:px-3 md:py-1.5 rounded-full bg-tint-green text-green font-medium mb-3 md:mb-4 text-xs md:text-sm" style="background-color: #f0f8f0; color: #377D3E;">
+                        <i class="fas fa-rocket mr-2 text-xs"></i>
+                        <span class="bg-white rounded opacity-30 p-0.5">Skills. Progress. Prosperity!</span>
+                    </div>
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 hero-title">
+                        <span class="block">REALITY DREAM</span>
+                        <span class="block">INSTITUTE</span>
+                    </h1>
+                    <p class="text-sm md:text-base text-gray-300 mb-4 md:mb-6 max-w-2xl mx-auto lg:mx-0">
+                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mobile-center lg:mobile-stack">
+                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 px-4 md:px-5 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate text-sm"></i>
+                            <span>Explore Courses</span>
+                        </button>
+                        <button class="btn-download transition-all bg-white hover:bg-gray-100 text-green border border-green-200 font-medium py-2 px-4 md:px-5 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf text-sm"></i>
+                            <span>Download Brochure</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-10 md:py-14 section-padding" style="background-color: #FFFFFF;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">About Reality Dream Institute</h2>
+                <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+                <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+                    Reality Dream empowers learners with hands-on, industry-relevant technical skills, nurturing integrity, competence, and innovation to create sustainable pathways to dignified employment, entrepreneurship, and community transformation.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                <!-- card 1 -->
+                <div class="info-card p-5 md:p-6 rounded-xl mobile-padding" style="background-color: #f0f8f0; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #377D3E;">
+                        <i class="fas fa-graduation-cap text-white text-lg md:text-xl"></i>
+                    </div>
+                    <div class="flex justify-center mb-4 md:mb-4">
+                        <img src="/about1.svg" alt="brain icon">
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Practical Learning</h3>
+                    <p class="text-gray-700 text-sm md:text-base">Hands-on training with industry-standard equipment and tools for real-world application.</p>
+                </div>
+                
+                <div class="info-card p-5 md:p-6 rounded-xl mobile-padding" style="background-color: #f5f0f9; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #6B3E93;">
+                        <i class="fas fa-briefcase text-white text-lg md:text-xl"></i>
+                    </div>
+                    <div class="flex justify-center mb-4 md:mb-4">
+                        <img src="/about2.svg" alt="career icon">
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Career Focused</h3>
+                    <p class="text-gray-700 text-sm md:text-base">Courses designed to provide marketable skills that employers are looking for today.</p>
+                </div>
+                
+                <div class="info-card p-5 md:p-6 rounded-xl mobile-padding" style="background-color: #fdf4e7; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #E38822;">
+                        <i class="fas fa-users text-white text-lg md:text-xl"></i>
+                    </div>
+                    <div class="flex justify-center mb-4 md:mb-4">
+                        <img src="/about3.svg" alt="manager icon">
+                    </div>
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Expert Instructors</h3>
+                    <p class="text-gray-700 text-sm md:text-base">Learn from industry professionals with years of practical experience in their fields.</p>
+                </div>
+            </div>
+            
+            <div class="mt-6 md:mt-10 p-5 md:p-6 rounded-xl text-white mobile-padding" style="background: linear-gradient(90deg, #377D3E, #2b6331);">
+                <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-center">Our Values</h3>
+                <p class="text-sm md:text-base text-center">At Reality Dream, we believe in skill, discipline, integrity, and service—training individuals not only to earn a living, but to positively impact their communities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-10 md:py-14 section-padding" style="background-color: #F8F9FA;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">Our Courses</h2>
+                <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+                <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+                    Our training programs combine practical instruction, real-world experience, and strong values to prepare learners for careers and enterprise in the electronics security and technical services industry.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 course-grid">
+                <!-- CCTV Installation -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #377D3E; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #f0f8f0; color: #377D3E;">
+                            <i class="fas fa-video text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">CCTV Installation</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Learn to install, configure, and maintain CCTV systems for residential and commercial applications.</p>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Camera Basics</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">System Setup</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Cabling & Networking</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">System Configuration</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Troubleshooting & Maintenance</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #377D3E;">7 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Learn More</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Solar Installation -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #6B3E93; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #f5f0f9; color: #6B3E93;">
+                            <i class="fas fa-solar-panel text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Solar Installation</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Master solar energy systems installation, from basics to full practical setup for residential and commercial use.</p>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Solar Basics</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Panels & Batteries</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Inverters & Controllers</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Wiring & Safety</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Full Practical Setup</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #6B3E93;">7 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Learn More</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Entrepreneurship Training -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #E38822; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #fdf4e7; color: #E38822;">
+                            <i class="fas fa-lightbulb text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Entrepreneurship</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Develop business planning, marketing, and financial management skills to start and run your own venture.</p>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #E38822;"></i>
+                                <span class="text-xs md:text-sm">Business Foundation Skills</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #E38822;"></i>
+                                <span class="text-xs md:text-sm">Marketing & Branding</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #E38822;"></i>
+                                <span class="text-xs md:text-sm">Money Management</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #E38822;"></i>
+                                <span class="text-xs md:text-sm">Customer Handling</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #E38822;"></i>
+                                <span class="text-xs md:text-sm">Starting & Running a Business</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #E38822;">3 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Learn More</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Front Desk & Cashier Training -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #377D3E; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #f0f8f0; color: #377D3E;">
+                            <i class="fas fa-concierge-bell text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Front Desk & Cashier Training</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Master reception duties, customer service, cashier operations, and professional record-keeping for office environments.</p>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Reception Duties</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Customer Service</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Phone & Email Handling</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Cashier Operations</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Record-Keeping & Reporting</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #377D3E;">3 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Learn More</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Computer Packages -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #6B3E93; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #f5f0f9; color: #6B3E93;">
+                            <i class="fas fa-laptop-code text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Computer Packages</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Comprehensive computer literacy covering essential Microsoft Office applications and practical computer skills.</p>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Microsoft Word</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Microsoft Excel</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Microsoft Publisher</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Microsoft PowerPoint</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #6B3E93;"></i>
+                                <span class="text-xs md:text-sm">Printing & Scanning</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #6B3E93;">3 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;" onclick="scrollToComputerPackages()">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>View Details</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Creation & Videography -->
+                <div class="course-card bg-white rounded-xl shadow-lg overflow-hidden" style="border-left: 4px solid #E38822; background-color: #FFFFFF; border-radius: 1rem; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;">
+                    <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #fdf4e7; color: #E38822;">
+                            <i class="fas fa-photo-video text-base md:text-lg"></i>
+                        </div>
+                        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Content Creation & Videography</h3>
+                        <p class="text-gray-600 text-sm md:text-base mb-3 md:mb-4">Master digital content creation, video editing, social media marketing, and branding strategies for the digital age.</p>
+                        <div class="p-4 md:p-5">
+                        <div class="w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center mb-2 md:mb-3" style="background-color: #f0f8f0; color: #377D3E;">
+                            <i class="fas fa-video text-base md:text-lg"></i>
+                        </div>
+                        <div class="space-y-1 md:space-y-2 mb-2 md:mb-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">The Videography Toolkit</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Telling Your Story</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Sound & Lighting</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">Content Strategy</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check mr-2 text-xs md:text-sm" style="color: #377D3E;"></i>
+                                <span class="text-xs md:text-sm">The Creator's Workflow</span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-sm md:text-base" style="color: #E38822;">3 months</span>
+                            <button class="btn-enroll transition-all text-white font-semibold px-2 py-1.5 md:px-3 md:py-1.5 rounded-md text-xs md:text-sm flex items-center space-x-1" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <span>Learn More</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fees Section -->
+    <section id="fees" class="py-10 md:py-14 section-padding" style="background-color: #FFFFFF;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">Course Fees</h2>
+                <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+                <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+                    Affordable training programs designed to provide maximum value and return on investment
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5 max-w-5xl mx-auto">
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #377D3E; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #377D3E;">CCTV Installation</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #377D3E;">Ksh 35,000</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #f0f8f0; color: #377D3E;">7 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Comprehensive CCTV installation training covering all aspects of security systems</p>
+                    <button class="btn-enroll transition-all text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        Enroll Now
+                    </button>
+                </div>
+                
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #6B3E93; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #6B3E93;">Solar Installation</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #6B3E93;">Ksh 35,000</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #f5f0f9; color: #6B3E93;">7 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Complete solar energy systems installation training with practical setup</p>
+                    <button class="btn-enroll text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93;">
+                        Enroll Now
+                    </button>
+                </div>
+                
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #E38822; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #E38822;">Entrepreneurship</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #E38822;">Ksh 15,000</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #fdf4e7; color: #E38822;">3 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Business foundation skills for starting and running successful enterprises</p>
+                    <button class="btn-enroll transition-all text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        Enroll Now
+                    </button>
+                </div>
+                
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #377D3E; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #377D3E;">Front Desk & Cashier</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #377D3E;">Ksh 15,000</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #f0f8f0; color: #377D3E;">2 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Professional office administration and cashier operations training</p>
+                    <button class="btn-enroll transition-all text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        Enroll Now
+                    </button>
+                </div>
+                
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #6B3E93; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #6B3E93;">Computer Packages</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #6B3E93;">Ksh 8,500</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #f5f0f9; color: #6B3E93;">3 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Essential computer literacy with Microsoft Office applications</p>
+                    <button class="btn-enroll transition-all text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        Enroll Now
+                    </button>
+                </div>
+                
+                <div class="info-card p-3 md:p-5 rounded-xl" style="border-left: 4px solid #E38822; background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3" style="color: #E38822;">Content Creation</h3>
+                    <div class="flex items-center mb-2 md:mb-3 flex-col sm:flex-row sm:items-start">
+                        <div class="text-xl md:text-2xl font-bold mb-1 sm:mb-0" style="color: #E38822;">Ksh 15,000</div>
+                        <div class="ml-0 sm:ml-3 px-2 py-0.5 rounded-full text-xs font-medium" style="background-color: #fdf4e7; color: #E38822;">3 months</div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base mb-2 md:mb-3">Digital content creation and videography for modern media</p>
+                    <button class="btn-enroll transition-all text-white font-semibold w-full py-1.5 md:py-2 rounded-md text-xs md:text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        Enroll Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Computer Packages Detail Section -->
+    <section id="computer-packages" class="py-10 md:py-14 section-padding" style="background: linear-gradient(135deg, rgba(55, 125, 62, 0.1), rgba(107, 62, 147, 0.1));">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">Computer Literacy Course</h2>
+                <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+                <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+                    Comprehensive 3-month program covering essential computer skills for modern workplaces
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+                <div class="info-card p-5 md:p-6 rounded-xl mobile-padding" style="background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4" style="color: #6B3E93;">Course Overview</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div>
+                            <h4 class="font-bold text-base md:text-lg mb-1" style="color: #377D3E;">Duration</h4>
+                            <p class="text-gray-700 text-sm md:text-base">3 months intensive training</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base md:text-lg mb-1" style="color: #377D3E;">Fee</h4>
+                            <p class="text-gray-700 text-sm md:text-base">Ksh 8,500 (All inclusive)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base md:text-lg mb-1" style="color: #377D3E;">What You'll Learn</h4>
+                            <div class="space-y-1 md:space-y-2 mt-2">
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle mt-0.5 mr-2 text-xs" style="color: #377D3E;"></i>
+                                    <span class="text-sm md:text-base">Microsoft Word - Document creation and formatting</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle mt-0.5 mr-2 text-xs" style="color: #377D3E;"></i>
+                                    <span class="text-sm md:text-base">Microsoft Excel - Spreadsheets, formulas, data analysis</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle mt-0.5 mr-2 text-xs" style="color: #377D3E;"></i>
+                                    <span class="text-sm md:text-base">Microsoft Publisher - Graphic design and publishing</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle mt-0.5 mr-2 text-xs" style="color: #377D3E;"></i>
+                                    <span class="text-sm md:text-base">Microsoft PowerPoint - Presentation design</span>
+                                </div>
+                                <div class="flex items-start">
+                                    <i class="fas fa-check-circle mt-0.5 mr-2 text-xs" style="color: #377D3E;"></i>
+                                    <span class="text-sm md:text-base">Printing & Scanning - Office equipment operation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card p-5 md:p-6 rounded-xl mobile-padding" style="background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4" style="color: #6B3E93;">Learning Outcomes</h3>
+                    <div class="space-y-2 md:space-y-3">
+                        <div class="p-2 md:p-3 rounded-lg" style="background-color: #f0f8f0;">
+                            <h4 class="font-bold mb-1 md:mb-1 text-sm md:text-base" style="color: #377D3E;">Professional Document Creation</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Create and format professional documents, reports, and letters using Microsoft Word</p>
+                        </div>
+                        
+                        <div class="p-2 md:p-3 rounded-lg" style="background-color: #f5f0f9;">
+                            <h4 class="font-bold mb-1 md:mb-1 text-sm md:text-base" style="color: #6B3E93;">Data Management Skills</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Manage and analyze data using Excel spreadsheets with formulas and functions</p>
+                        </div>
+                        
+                        <div class="p-2 md:p-3 rounded-lg" style="background-color: #fdf4e7;">
+                            <h4 class="font-bold mb-1 md:mb-1 text-sm md:text-base" style="color: #E38822;">Presentation Design</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Design engaging presentations for business, academic, or professional use</p>
+                        </div>
+                        
+                        <div class="p-2 md:p-3 rounded-lg" style="background-color: #f0f8f0;">
+                            <h4 class="font-bold mb-1 md:mb-1 text-sm md:text-base" style="color: #377D3E;">Office Productivity</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Operate office equipment including printers and scanners effectively</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 md:mt-10 p-5 md:p-6 rounded-xl text-white mobile-padding" style="background: linear-gradient(90deg, #377D3E, #2b6331);">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0 md:mr-6 text-center md:text-left">
+                        <h3 class="text-lg md:text-xl font-bold mb-1 md:mb-2">Ready to Start Your Digital Journey?</h3>
+                        <p class="text-xs md:text-sm">Enroll in our Computer Literacy Course today and gain marketable digital skills!</p>
+                    </div>
+                    <button class="btn-enroll transition-all font-bold py-2 px-4 md:px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full md:w-auto" style="background-color: #FFFFFF; color: #6B3E93; transition: all 0.3s ease;">
+                        <i class="fas fa-user-graduate text-sm"></i>
+                        <span>Enroll Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-10 md:py-14 section-padding" style="background-color: #F8F9FA;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">Contact Us</h2>
+                <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+                <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+                    Have questions about our courses? Get in touch with us for more information.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 contact-grid">
+                <div>
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Get in Touch</h3>
+                    
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center mr-2 md:mr-3 flex-shrink-0" style="background-color: #f0f8f0; color: #377D3E;">
+                                <i class="fas fa-map-marker-alt text-base md:text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base md:text-lg mb-0.5">Our Location</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Killfi Town, Ar Rayan Complex<br>Opp Titanic Building<br>Ground Floor Door 7</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center mr-2 md:mr-3 flex-shrink-0" style="background-color: #f5f0f9; color: #6B3E93;">
+                                <i class="fas fa-phone-alt text-base md:text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base md:text-lg mb-0.5">Phone Numbers</h4>
+                                <p class="text-gray-600 text-sm md:text-base">0722 729 198<br>0743 187 154</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center mr-2 md:mr-3 flex-shrink-0" style="background-color: #fdf4e7; color: #E38822;">
+                                <i class="fas fa-envelope text-base md:text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-base md:text-lg mb-0.5">Email Address</h4>
+                                <p class="text-gray-600 text-sm md:text-base">realitydreamacademy@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 md:mt-6">
+                        <h4 class="font-bold text-base md:text-lg mb-2 md:mb-3">Business Hours</h4>
+                        <p class="text-gray-600 text-sm md:text-base">Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+                
+                <div class="info-card p-5 md:p-6 rounded-xl shadow-lg mobile-padding" style="background-color: #FFFFFF; border-radius: 0.75rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+                    <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4">Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 mb-2 md:mb-3">
+                            <div>
+                                <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">First Name</label>
+                                <input type="text" class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Last Name</label>
+                                <input type="text" class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-2 md:mb-3">
+                            <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Phone Number</label>
+                            <input type="tel" class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base" required>
+                        </div>
+                        
+                        <div class="mb-2 md:mb-3">
+                            <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Email Address</label>
+                            <input type="email" class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base" required>
+                        </div>
+                        
+                        <div class="mb-2 md:mb-3">
+                            <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Course Interested In</label>
+                            <select class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base">
+                                <option value="">Select a course</option>
+                                <option value="cctv">CCTV Installation Training</option>
+                                <option value="solar">Solar Installation Training</option>
+                                <option value="entrepreneurship">Entrepreneurship Training</option>
+                                <option value="frontdesk">Front Desk & Cashier Training</option>
+                                <option value="computer">Computer Packages</option>
+                                <option value="content">Content Creation & Videography</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3 md:mb-4">
+                            <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Message</label>
+                            <textarea rows="4" class="w-full p-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-enroll transition-all text-white font-semibold w-full py-2.5 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-paper-plane text-sm"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-6 md:py-8" style="background-color: #121826; color: white;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 footer-grid">
+                <!-- First Column - Logo and Contact Info -->
+                <div>
+                    <div class="flex items-start mb-3 md:mb-4">
+                        <!-- Fixed SVG Logo with proper size -->
+                        <div class="flex-shrink-0 mr-2">
+                            <img src="/logo.svg" alt="Reality Dream Institute Logo" 
+                                 class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
+                        </div>
+                        <div>
+                            <h2 class="text-base md:text-lg font-bold leading-tight">Reality Dream Institute</h2>
+                            <p class="text-xs md:text-sm text-gray-300 mt-0.5">Business, Tech & Innovation Hub</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 text-sm md:text-base mb-3 leading-relaxed">
+                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    </p>
+                    
+                    <div class="space-y-1">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base">Kilifi Town, Ar Rayan Complex</p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base">0722 729 198 | 0743 187 154</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Quick Links</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
+                        <li><a href="#fees" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Popular Courses -->
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+                        <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter & Social -->
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Newsletter</h3>
+                    <p class="text-gray-300 text-sm md:text-base mb-2 md:mb-3 leading-relaxed">
+                        Subscribe to get updates on new courses and offers.
+                    </p>
+                    
+                    <!-- Newsletter Form -->
+                    <div class="flex mb-3 md:mb-4">
+                        <input type="email" placeholder="Your email" 
+                               class="flex-grow p-2 rounded-l-md text-gray-800 focus:outline-none text-sm md:text-base w-full">
+                        <button class="px-3 md:px-4 rounded-r-md font-medium text-xs md:text-sm whitespace-nowrap" style="background-color: #377D3E;">
+                            Subscribe
+                        </button>
+                    </div>
+                    
+                    <!-- Contact & Social -->
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base break-all">realitydreamacademy@gmail.com</p>
+                        </div>
+                        
+                        <!-- Social Media Icons -->
+                        <div class="flex space-x-2 pt-2">
+                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" class="w-7 h-7 md:w-8 md:h-8 rounded-full text-gray-300 flex items-center justify-center hover:text-white transition text-xs" style="background-color: #2A2F3C;">
+                                <i class="fab fa-facebook-f text-xs"></i>
+                            </a>
+                            <a href="https://www.twitter.com/realitydreamacademy"  target="_blank" class="w-7 h-7 md:w-8 md:h-8 rounded-full text-gray-300 flex items-center justify-center hover:text-white transition text-xs" style="background-color: #2A2F3C;">
+                                <i class="fab fa-twitter text-xs"></i>
+                            </a>
+                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" class="w-7 h-7 md:w-8 md:h-8 rounded-full text-gray-300 flex items-center justify-center hover:text-white transition text-xs" style="background-color: #2A2F3C;">
+                                <i class="fab fa-instagram text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-700 mt-4 md:mt-6 pt-4 md:pt-6 text-center">
+                <p class="text-gray-300 text-sm md:text-base">
+                    &copy; <span id="current-year">2024</span> Reality Dream Institute. All rights reserved. | Dream It, Build It.
+                </p>
+                <p class="mt-1 text-gray-400 text-xs md:text-sm">
+                    Business, Tech & Innovation Hub | Kilifi Town, Kenya
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            
+            if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+        
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Function to scroll to computer packages section
+        function scrollToComputerPackages() {
+            const element = document.getElementById('computer-packages');
+            if (element) {
+                window.scrollTo({
+                    top: element.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Course card hover effects - only on non-touch devices
+        if (window.matchMedia("(hover: hover)").matches) {
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const borderColor = window.getComputedStyle(this).borderLeftColor;
+                    this.style.boxShadow = `0 10px 25px ${hexToRgba(borderColor, 0.2)}`;
+                    this.style.transform = 'translateY(-8px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '';
+                    this.style.transform = '';
+                });
+            });
+            
+            // Button hover effects
+            document.querySelectorAll('.btn-primary').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#2c6a32';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 6px 15px rgba(55, 125, 62, 0.3)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '#377D3E';
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            document.querySelectorAll('.btn-secondary').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#5a347c';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 6px 15px rgba(107, 62, 147, 0.3)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '#6B3E93';
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            document.querySelectorAll('.btn-accent').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#c5741d';
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 6px 15px rgba(227, 136, 34, 0.3)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '#E38822';
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            document.querySelectorAll('.btn-download').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(55, 125, 62, 0.3)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+            
+            document.querySelectorAll('.btn-enroll').forEach(btn => {
+                btn.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(107, 62, 147, 0.3)';
+                });
+                
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+        }
+        
+        // Button functionality for Download Brochure
+        document.querySelectorAll('.btn-download').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Create a visual feedback
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+                btn.disabled = true;
+                
+                // Simulate download process
+                setTimeout(() => {
+                    alert('Brochure download started! Check your downloads folder.');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }, 1000);
+            });
+        });
+        
+        // Button functionality for Enroll Now
+        document.querySelectorAll('.btn-enroll').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Create a visual feedback
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                btn.disabled = true;
+                
+                // Simulate enrollment process
+                setTimeout(() => {
+                    alert('Redirecting to enrollment form...');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    // Scroll to contact form
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                        window.scrollTo({
+                            top: contactSection.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 1000);
+            });
+        });
+        
+        // Helper function to convert hex to rgba
+        function hexToRgba(hex, alpha) {
+            // If the color is already in rgb format
+            if (hex.startsWith('rgb')) {
+                return hex.replace('rgb', 'rgba').replace(')', `, ${alpha})`);
+            }
+            
+            // Default fallback
+            return `rgba(55, 125, 62, ${alpha})`;
+        }
+        
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Close mobile menu on resize
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (window.innerWidth >= 1024 && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }, 250);
+        });
+        
+        // Touch device detection and adjustments
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            document.body.classList.add('touch-device');
+        }
+    </script>
+</body>
+</html>

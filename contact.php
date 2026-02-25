@@ -1,21 +1,10 @@
 <?php
 // ============================================
-// Contact Form Backend Handler - XAMPP Local Setup
+// Contact Form Backend Handler
 // ============================================
 
-// Database Configuration for XAMPP
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'Reality Dream');
-
-// Create connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-// Check connection
-if ($conn->connect_error) {
-    error_log("Database Connection Error: " . $conn->connect_error);
-}
+// Include database configuration
+require_once 'db_config.php';
 
 $response = ['success' => false, 'message' => '', 'errors' => []];
 
@@ -49,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
     
     if (empty($email)) {
         $response['errors']['email'] = 'Email address is required';
+    } elseif (preg_match('/\s/', $email)) {
+        $response['errors']['email'] = 'Email address cannot contain spaces';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response['errors']['email'] = 'Please enter a valid email address';
     }
@@ -72,105 +63,128 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
         
-        // Prepare and execute database insert
-        if ($conn) {
-            $stmt = $conn->prepare("INSERT INTO contact_submissions (first_name, last_name, phone, email, course, message, submitted_at, ip_address, status) VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, 'new')");
-            
-            if ($stmt) {
-                $ip_address = $_SERVER['REMOTE_ADDR'];
-                $stmt->bind_param("sssssss", $firstName, $lastName, $phone, $email, $course, $message, $ip_address);
-                
-                if ($stmt->execute()) {
-                    $response['success'] = true;
-                    $response['message'] = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
-                    
-                    // Send email notification to admin
-                    $to = 'realitydreaminternational@gmail.com';
-                    $subject = "New Contact Form Submission from {$firstName} {$lastName}";
-                    
-                    $emailBody = "
-                    <html>
-                    <head>
-                        <style>
-                            body { font-family: Arial, sans-serif; color: #333; }
-                            .container { max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
-                            .header { background-color: #6B3E93; color: white; padding: 15px; border-radius: 5px 5px 0 0; }
-                            .field { margin: 15px 0; }
-                            .label { font-weight: bold; color: #6B3E93; }
-                            .value { padding: 8px; background-color: #f9f9f9; border-left: 3px solid #377D3E; padding-left: 10px; }
-                        </style>
-                    </head>
-                    <body>
-                        <div class='container'>
-                            <div class='header'><h2>New Contact Form Submission</h2></div>
-                            <div class='field'>
-                                <div class='label'>Name:</div>
-                                <div class='value'>{$firstName} {$lastName}</div>
-                            </div>
-                            <div class='field'>
-                                <div class='label'>Email:</div>
-                                <div class='value'><a href='mailto:{$email}'>{$email}</a></div>
-                            </div>
-                            <div class='field'>
-                                <div class='label'>Phone:</div>
-                                <div class='value'>{$phone}</div>
-                            </div>
-                            <div class='field'>
-                                <div class='label'>Course Interested In:</div>
-                                <div class='value'>{$course}</div>
-                            </div>
-                            <div class='field'>
-                                <div class='label'>Message:</div>
-                                <div class='value'>{$message}</div>
-                            </div>
-                            <div class='field' style='margin-top: 20px; color: #999; font-size: 12px;'>
-                                Submitted on: " . date('Y-m-d H:i:s') . "
-                            </div>
-                        </div>
-                    </body>
-                    </html>";
-                    
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-                    $headers .= "From: " . $email . "\r\n";
-                    $headers .= "Reply-To: " . $email . "\r\n";
-                    
-                    // Send email to admin
-                    mail($to, $subject, $emailBody, $headers);
-                    
-                    // Send confirmation email to user
-                    $userSubject = "We received your message - Reality Dream Institute";
-                    $userBody = "
-                    <html>
-                    <body style='font-family: Arial, sans-serif;'>
-                        <h2>Thank you for contacting us!</h2>
-                        <p>Dear {$firstName},</p>
-                        <p>We have received your message and will respond to you shortly.</p>
-                        <p><strong>Your inquiry details:</strong></p>
-                        <p>Course: {$course}</p>
-                        <p>We appreciate your interest in Reality Dream Institute.</p>
-                        <p>Best regards,<br><strong>Reality Dream Institute Team</strong></p>
-                    </body>
-                    </html>";
-                    
-                    $userHeaders = "MIME-Version: 1.0" . "\r\n";
-                    $userHeaders .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-                    $userHeaders .= "From: realitydreaminternational@gmail.com\r\n";
-                    
-                    mail($email, $userSubject, $userBody, $userHeaders);
-                    
-                } else {
-                    $response['success'] = false;
-                    $response['message'] = 'Database error: ' . $conn->error;
+        // Handle attachment upload (optional)
+        $attachmentPath = null;
+        if (!empty($_FILES['attachment']) && $_FILES['attachment']['error'] !== UPLOAD_ERR_NO_FILE) {
+            $file = $_FILES['attachment'];
+            $allowed = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'];
+            $maxSize = 5 * 1024 * 1024; // 5MB
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            if ($file['error'] === UPLOAD_ERR_OK && in_array($ext, $allowed) && $file['size'] <= $maxSize) {
+                $safeName = time() . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', $file['name']);
+                $target = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $safeName;
+                if (move_uploaded_file($file['tmp_name'], $target)) {
+                    $attachmentPath = 'uploads/' . $safeName;
                 }
-                $stmt->close();
+            } else {
+                error_log('Attachment upload failed or invalid file');
+            }
+        }
+
+        // Insert data into database (including optional attachment)
+        $insertSuccess = false;
+        $insertSQL = "INSERT INTO contacts (first_name, last_name, email, phone, course, message, attachment) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($insertSQL);
+        if ($stmt) {
+            $stmt->bind_param("sssssss", $firstName, $lastName, $email, $phone, $course, $message, $attachmentPath);
+            $insertSuccess = $stmt->execute();
+            $stmt->close();
+            
+            if (!$insertSuccess) {
+                error_log("Database insert error: " . $conn->error);
+            }
+        }
+        
+        // Prepare email to admin
+        $to = 'realitydreaminternational@gmail.com';
+        $subject = "New Contact Form Submission from {$firstName} {$lastName}";
+        
+        $emailBody = "
+        <html>
+        <head>
+            <style>
+                body { font-family: Arial, sans-serif; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; }
+                .header { background-color: #6B3E93; color: white; padding: 15px; border-radius: 5px 5px 0 0; }
+                .field { margin: 15px 0; }
+                .label { font-weight: bold; color: #6B3E93; }
+                .value { padding: 8px; background-color: #f9f9f9; border-left: 3px solid #377D3E; padding-left: 10px; }
+            </style>
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'><h2>New Contact Form Submission</h2></div>
+                <div class='field'>
+                    <div class='label'>Name:</div>
+                    <div class='value'>{$firstName} {$lastName}</div>
+                </div>
+                <div class='field'>
+                    <div class='label'>Email:</div>
+                    <div class='value'><a href='mailto:{$email}'>{$email}</a></div>
+                </div>
+                <div class='field'>
+                    <div class='label'>Phone:</div>
+                    <div class='value'>{$phone}</div>
+                </div>
+                <div class='field'>
+                    <div class='label'>Course Interested In:</div>
+                    <div class='value'>{$course}</div>
+                </div>
+                <div class='field'>
+                    <div class='label'>Message:</div>
+                    <div class='value'>{$message}</div>
+                </div>
+                <div class='field' style='margin-top: 20px; color: #999; font-size: 12px;'>
+                    Submitted on: " . date('Y-m-d H:i:s') . "
+                </div>
+            </div>
+        </body>
+        </html>";
+        
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+        $headers .= "From: realitydreaminternational@gmail.com" . "\r\n";
+        $headers .= "Reply-To: " . $email . "\r\n";
+        
+        // Send email to admin (use helper if available)
+        require_once 'mail_config.php';
+        $mailSent = send_site_mail($to, $subject, $emailBody, $headers);
+        
+        if ($mailSent) {
+            $response['success'] = true;
+            $response['message'] = 'Thank you! Your message has been sent successfully. We will get back to you soon.';
+            
+            // Send confirmation email to user
+            $userSubject = "We received your message - Reality Dream Institute";
+            $userBody = "
+            <html>
+            <body style='font-family: Arial, sans-serif;'>
+                <h2>Thank you for contacting us!</h2>
+                <p>Dear {$firstName},</p>
+                <p>We have received your message and will respond to you shortly.</p>
+                <p><strong>Your inquiry details:</strong></p>
+                <p>Course: {$course}</p>
+                <p>We appreciate your interest in Reality Dream Institute.</p>
+                <p>Best regards,<br><strong>Reality Dream Institute Team</strong></p>
+            </body>
+            </html>";
+            
+            $userHeaders = "MIME-Version: 1.0" . "\r\n";
+            $userHeaders .= "Content-type: text/html; charset=UTF-8" . "\r\n";
+            $userHeaders .= "From: realitydreaminternational@gmail.com\r\n";
+            
+            send_site_mail($email, $userSubject, $userBody, $userHeaders);
+        } else {
+            // Keep submission successful if saved in DB, even when mail transport fails.
+            if ($insertSuccess) {
+                $response['success'] = true;
+                $response['message'] = 'Your message was received and saved. Email notification is temporarily unavailable.';
             } else {
                 $response['success'] = false;
-                $response['message'] = 'Database error: ' . $conn->error;
+                $response['message'] = 'Sorry, there was an error sending your message. Please try again later.';
             }
-        } else {
-            $response['success'] = false;
-            $response['message'] = 'Database connection error. Please try again later.';
         }
     } else {
         $response['message'] = 'Please fix the errors below and try again.';
@@ -246,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                         </div>
                     <?php endif; ?>
                     
-                    <form id="contact-form" method="POST" action="">
+                    <form id="contact-form" method="POST" action="" enctype="multipart/form-data">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 mb-2 md:mb-3">
                             <div>
                                 <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">First Name <span style="color: #d32f2f;">*</span></label>
@@ -278,7 +292,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                         <div class="mb-2 md:mb-3">
                             <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Email Address <span style="color: #d32f2f;">*</span></label>
                             <input type="email" name="email" class="w-full p-2.5 border rounded-md focus:outline-none focus:ring-2 focus:ring-green text-sm md:text-base <?php echo !empty($response['errors']['email']) ? 'border-red-500' : 'border-gray-300'; ?>" 
-                                   value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" required>
+                                   value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>"
+                                   inputmode="email"
+                                   autocomplete="email"
+                                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                                   oninput="this.value=this.value.replace(/\s+/g,'');"
+                                   required>
                             <?php if (!empty($response['errors']['email'])): ?>
                                 <p class="text-red-500 text-xs mt-1"><i class="fas fa-times-circle"></i> <?php echo $response['errors']['email']; ?></p>
                             <?php endif; ?>
@@ -307,6 +326,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                                 <p class="text-red-500 text-xs mt-1"><i class="fas fa-times-circle"></i> <?php echo $response['errors']['message']; ?></p>
                             <?php endif; ?>
                         </div>
+
+                        <div class="mb-3 md:mb-4">
+                            <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Attachment (optional)</label>
+                            <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="w-full" />
+                            <p class="text-gray-500 text-xs mt-1">Allowed: PDF, DOC, JPG, PNG — Max 5MB</p>
+                        </div>
                         
                         <button type="submit" name="submit_contact" value="1" class="btn-enroll transition-all text-white font-semibold w-full py-2.5 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base hover:shadow-lg" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-paper-plane text-sm"></i>
@@ -316,3 +341,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                 </div>
             </div>
         </div>
+    </section>
+
+<?php
+// Close database connection
+$conn->close();
+?>

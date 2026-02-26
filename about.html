@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reality Dream Institute | About Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="font-family: 'Poppins', sans-serif; background-color: #F8F9FA; color: #333333; overflow-x: hidden;">
+  <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826;">
+    <div class="container mx-auto px-4 py-2">
+      <div class="flex flex-wrap justify-between items-center">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-full flex items-center justify-center">
+            <img src="./logo.jpg" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+          </div>
+          <div>
+            <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+            <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
+          <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
+          <a href="about.html" class="text-green-300 font-medium transition text-sm xl:text-sm">About</a>
+          <a href="index.html#courses" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
+          <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+          <a href="index.html#fees" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+          <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+          <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
+            <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+              <i class="fas fa-file-pdf text-xs"></i>
+              <span class="hidden sm:inline">Brochure</span>
+            </button>
+            <button onclick="window.location.href='enroll.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+              <i class="fas fa-user-graduate text-xs"></i>
+              <span class="hidden sm:inline">Enroll</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+            <i class="fas fa-bars text-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+        <div class="flex flex-col space-y-3">
+          <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
+          <a href="about.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+          <a href="index.html#courses" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+          <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+          <a href="index.html#fees" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+          <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+          <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
+            <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+              <i class="fas fa-file-pdf"></i>
+              <span>Download Brochure</span>
+            </button>
+            <button onclick="window.location.href='enroll.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+              <i class="fas fa-user-graduate"></i>
+              <span>Enroll Now</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-10 md:py-14 section-padding" style="background-color: #FFFFFF;">
+    <div class="container mx-auto px-4 md:px-6">
+      <div class="text-center mb-6 md:mb-10">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 section-title">About Reality Dream Institute</h2>
+        <div class="w-20 md:w-24 h-1 bg-gradient-to-r from-green to-purple mx-auto"></div>
+        <p class="text-gray-600 mt-4 md:mt-6 max-w-3xl mx-auto text-sm md:text-base">
+          Reality Dream empowers learners with hands-on, industry-relevant technical skills, nurturing integrity, competence, and innovation to create sustainable pathways to dignified employment, entrepreneurship, and community transformation.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div class="info-card p-5 md:p-6 rounded-xl" style="background-color: #f0f8f0; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #377D3E;">
+            <i class="fas fa-graduation-cap text-white text-lg md:text-xl"></i>
+          </div>
+          <div class="flex justify-center mb-4 md:mb-4">
+            <img src="Assets/images/comp training.jpg" alt="Practical learning">
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Practical Learning</h3>
+          <p class="text-gray-700 text-sm md:text-base">Hands-on training with industry-standard equipment and tools for real-world application.</p>
+        </div>
+
+        <div class="info-card p-5 md:p-6 rounded-xl" style="background-color: #f5f0f9; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #6B3E93;">
+            <i class="fas fa-briefcase text-white text-lg md:text-xl"></i>
+          </div>
+          <div class="flex justify-center mb-4 md:mb-4">
+            <img src="Assets/images/Entrepreneurship.jpg" alt="Career focused">
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Career Focused</h3>
+          <p class="text-gray-700 text-sm md:text-base">Courses designed to provide marketable skills that employers are looking for today.</p>
+        </div>
+
+        <div class="info-card p-5 md:p-6 rounded-xl" style="background-color: #fdf4e7; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);">
+          <div class="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center mb-3 md:mb-4" style="background-color: #E38822;">
+            <i class="fas fa-users text-white text-lg md:text-xl"></i>
+          </div>
+          <div class="flex justify-center mb-4 md:mb-4">
+            <img src="Assets/images/image (16).jpg" alt="Expert instructors">
+          </div>
+          <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Expert Instructors</h3>
+          <p class="text-gray-700 text-sm md:text-base">Learn from industry professionals with years of practical experience in their fields.</p>
+        </div>
+      </div>
+
+      <div class="mt-6 md:mt-10 p-5 md:p-6 rounded-xl text-white" style="background: linear-gradient(90deg, #377D3E, #2b6331);">
+        <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3 text-center">Our Values</h3>
+        <p class="text-sm md:text-base text-center">At Reality Dream, we believe in skill, discipline, integrity, and service - training individuals not only to earn a living, but to positively impact their communities.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="pdfModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-screen flex flex-col">
+      <div class="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50">
+        <h2 class="text-xl font-bold text-gray-800">Reality Dream Institute - Brochure</h2>
+        <button onclick="closePdfViewer()" class="text-gray-500 hover:text-gray-800 text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="flex-1 overflow-auto">
+        <iframe id="pdfFrame" src="./Bronchure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
+      </div>
+      <div class="flex justify-end items-center gap-3 p-4 border-t border-gray-200 bg-gray-50">
+        <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition">
+          <i class="fas fa-print"></i>
+          <span>Print</span>
+        </button>
+        <a href="./Bronchure.pdf" download class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
+          <i class="fas fa-download"></i>
+          <span>Download</span>
+        </a>
+        <button onclick="closePdfViewer()" class="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md transition">
+          <i class="fas fa-times"></i>
+          <span>Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+
+    function openPdfViewer() {
+      const pdfModal = document.getElementById('pdfModal');
+      pdfModal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePdfViewer() {
+      const pdfModal = document.getElementById('pdfModal');
+      pdfModal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    function printPdf() {
+      const pdfFrame = document.getElementById('pdfFrame');
+      pdfFrame.contentWindow.print();
+    }
+
+    document.getElementById('pdfModal')?.addEventListener('click', function(e) {
+      if (e.target === this) closePdfViewer();
+    });
+  </script>
+</body>
+</html>

@@ -5,8 +5,8 @@
 
 // Database connection details for XAMPP
 $db_host = 'localhost';
-$db_user = 'ouma';
-$db_password = 'jalamo@2025';
+$db_user = 'root';
+$db_password = '';
 $db_name = 'Reality_Dream';
 
 // Create connection
@@ -39,6 +39,29 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS contacts (
 
 if (!$conn->query($createTableSQL)) {
     error_log("Error creating table: " . $conn->error);
+}
+
+// Create enrollments table if it doesn't exist
+$createEnrollmentsSQL = "CREATE TABLE IF NOT EXISTS enrollments (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    course VARCHAR(200) NOT NULL,
+    attachment VARCHAR(255) DEFAULT NULL,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+if (!$conn->query($createEnrollmentsSQL)) {
+    error_log("Error creating enrollments table: " . $conn->error);
+}
+
+// Ensure attachment column exists for older enrollments tables
+$checkEnrollAttachment = $conn->query("SHOW COLUMNS FROM enrollments LIKE 'attachment'");
+if ($checkEnrollAttachment && $checkEnrollAttachment->num_rows === 0) {
+    if (!$conn->query("ALTER TABLE enrollments ADD COLUMN attachment VARCHAR(255) DEFAULT NULL AFTER course")) {
+        error_log("Error adding enrollments.attachment column: " . $conn->error);
+    }
 }
 
 // Create admin users table if it doesn't exist

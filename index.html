@@ -7,6 +7,111 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        #chat-toggle {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #377D3E, #6B3E93);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            z-index: 60;
+            transition: transform 0.2s ease;
+        }
+        #chat-toggle:hover { transform: translateY(-2px); }
+        #chatbot {
+            position: fixed;
+            right: 20px;
+            bottom: 88px;
+            width: 340px;
+            max-width: calc(100vw - 24px);
+            height: 470px;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            z-index: 60;
+            display: none;
+            border: 1px solid #e5e7eb;
+        }
+        #chatbot.open { display: flex; flex-direction: column; }
+        #chat-header {
+            background: linear-gradient(135deg, #121826, #2A2F3C);
+            color: #fff;
+            padding: 12px 14px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #close-chat {
+            cursor: pointer;
+            opacity: 0.9;
+            font-size: 12px;
+        }
+        #chat-body {
+            flex: 1;
+            padding: 12px;
+            background: #f8fafc;
+            overflow-y: auto;
+        }
+        .chat-bot, .chat-user {
+            margin-bottom: 10px;
+            max-width: 85%;
+            padding: 9px 11px;
+            border-radius: 10px;
+            line-height: 1.4;
+            font-size: 13px;
+            word-break: break-word;
+        }
+        .chat-bot {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            color: #1f2937;
+        }
+        .chat-user {
+            margin-left: auto;
+            background: #6B3E93;
+            color: #fff;
+        }
+        #chat-input-area {
+            padding: 10px;
+            border-top: 1px solid #e5e7eb;
+            background: #fff;
+            display: flex;
+            gap: 8px;
+        }
+        #user-input {
+            flex: 1;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 9px 10px;
+            outline: none;
+            font-size: 13px;
+        }
+        #user-input:focus {
+            border-color: #6B3E93;
+            box-shadow: 0 0 0 2px rgba(107, 62, 147, 0.15);
+        }
+        #chat-send {
+            border: 0;
+            background: #377D3E;
+            color: #fff;
+            border-radius: 8px;
+            padding: 0 12px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body style="font-family: 'Poppins', sans-serif; background-color: #F8F9FA; color: #333333; overflow-x: hidden;">
@@ -29,11 +134,11 @@
                 <!-- Desktop menu -->
                 <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
                     <a href="#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
                     <a href="#courses" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
                     <a href="#fees" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
-                    <a href="#contact" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
                     
                     <!-- Buttons Container inside Nav - Smaller buttons -->
                     <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
@@ -63,11 +168,11 @@
             <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
                 <div class="flex flex-col space-y-3">
                     <a href="#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
                     <a href="#courses" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
                     <a href="#fees" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
-                    <a href="#contact" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
                     
                     <!-- Mobile Buttons -->
                     <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
@@ -117,10 +222,10 @@
                         Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
                     </p>
                     <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <a href="#courses" class="transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-user-graduate text-sm"></i>
                             <span>Explore Courses</span>
-                        </button>
+                        </a>
                         <button onclick="openPdfViewer()" class="btn-download transition-all bg-white hover:bg-gray-100 text-green border border-green-200 font-semibold py-3 px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="color: #377D3E; border-color: #377D3E; transition: all 0.3s ease; cursor: pointer;">
                             <i class="fas fa-file-pdf text-sm"></i>
                             <span>Download Brochure</span>
@@ -173,7 +278,7 @@
                         <i class="fas fa-graduation-cap text-white text-lg md:text-xl"></i>
                     </div>
                     <div class="flex justify-center mb-4 md:mb-4">
-                        <img src="/about1.svg" alt="brain icon">
+                        <img src="Assets/images/HAYES.jpg" alt="brain icon">
                     </div>
                     <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Practical Learning</h3>
                     <p class="text-gray-700 text-sm md:text-base">Hands-on training with industry-standard equipment and tools for real-world application.</p>
@@ -184,7 +289,7 @@
                         <i class="fas fa-briefcase text-white text-lg md:text-xl"></i>
                     </div>
                     <div class="flex justify-center mb-4 md:mb-4">
-                        <img src="/about2.svg" alt="career icon">
+                        <img src="Assets/images/Entrepreneurship.jpg" alt="career icon">
                     </div>
                     <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Career Focused</h3>
                     <p class="text-gray-700 text-sm md:text-base">Courses designed to provide marketable skills that employers are looking for today.</p>
@@ -195,7 +300,7 @@
                         <i class="fas fa-users text-white text-lg md:text-xl"></i>
                     </div>
                     <div class="flex justify-center mb-4 md:mb-4">
-                        <img src="/about3.svg" alt="manager icon">
+                        <img src="Assets/images/image (16).jpg" alt="manager icon">
                     </div>
                     <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-3">Expert Instructors</h3>
                     <p class="text-gray-700 text-sm md:text-base">Learn from industry professionals with years of practical experience in their fields.</p>
@@ -825,10 +930,10 @@
                     <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Quick Links</h3>
                     <ul class="space-y-1 md:space-y-2">
                         <li><a href="#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
                         <li><a href="#courses" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
                         <li><a href="#fees" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+                        <li><a href="contact.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -926,6 +1031,23 @@
                     <span>Close</span>
                 </button>
             </div>
+        </div>
+    </div>
+
+    <div id="chat-toggle" title="Chat with assistant">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div id="chatbot" aria-live="polite">
+        <div id="chat-header">
+            <span>Reality Dream Assistant</span>
+            <span id="close-chat">Close</span>
+        </div>
+        <div id="chat-body">
+            <div class="chat-bot">Hi! How can I help you today?</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="chat-send" onclick="sendMessage()">Send</button>
         </div>
     </div>
 
@@ -1139,25 +1261,9 @@
         // Button functionality for Enroll Now
         document.querySelectorAll('.btn-enroll').forEach(btn => {
             btn.addEventListener('click', function() {
-                // Create a visual feedback
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-                btn.disabled = true;
-                
-                // Simulate enrollment process
-                setTimeout(() => {
-                    alert('Redirecting to enrollment form...');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    // Scroll to contact form
-                    const contactSection = document.getElementById('contact');
-                    if (contactSection) {
-                        window.scrollTo({
-                            top: contactSection.offsetTop - 60,
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 1000);
+                // Keep form submit buttons working normally
+                if (btn.closest('form')) return;
+                window.location.href = 'enroll.php';
             });
         });
         
@@ -1212,6 +1318,75 @@
         document.getElementById('pdfModal')?.addEventListener('click', function(e) {
             if (e.target === this) {
                 closePdfViewer();
+            }
+        });
+
+        // Simple on-page assistant widget
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatbot = document.getElementById('chatbot');
+        const closeChat = document.getElementById('close-chat');
+        const chatBody = document.getElementById('chat-body');
+        const userInput = document.getElementById('user-input');
+
+        function appendChatMessage(text, type, isHtml) {
+            const bubble = document.createElement('div');
+            bubble.className = type === 'user' ? 'chat-user' : 'chat-bot';
+            if (isHtml) {
+                bubble.innerHTML = text;
+            } else {
+                bubble.textContent = text;
+            }
+            chatBody.appendChild(bubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getBotReply(message) {
+            const text = message.toLowerCase();
+            if (
+                text.includes('emergency') ||
+                text.includes('urgent') ||
+                text.includes('help now') ||
+                text.includes('asap') ||
+                text.includes('staff')
+            ) {
+                return {
+                    html: "Emergency support: <br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.php' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>",
+                    isHtml: true
+                };
+            }
+            if (text.includes('course')) return { html: 'We offer CCTV, Solar, Entrepreneurship, Front Desk, Computer Packages, and Content Creation. Check Courses on this page or blog.', isHtml: false };
+            if (text.includes('fee') || text.includes('price') || text.includes('cost')) return { html: 'Please check the Fees section on the home page for current course fees.', isHtml: false };
+            if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'You can call 0722 729 198 / 0743 187 154 or email realitydreaminternational@gmail.com.', isHtml: false };
+            if (text.includes('location') || text.includes('where')) return { html: 'We are in Kilifi Town, Ar Rayan Complex, Opp Titanic Building, Ground Floor Door 7.', isHtml: false };
+            if (text.includes('enroll') || text.includes('register') || text.includes('admission')) return { html: 'Use the Enroll button in the menu, then fill the enrollment form.', isHtml: false };
+            if (text.includes('brochure')) return { html: 'Click the Brochure button in the top navigation to view or download the brochure.', isHtml: false };
+            return { html: "I can help with courses, fees, location, contact, brochure, and enrollment. If it's urgent, type: emergency.", isHtml: false };
+        }
+
+        function sendMessage() {
+            const message = (userInput.value || '').trim();
+            if (!message) return;
+            appendChatMessage(message, 'user');
+            userInput.value = '';
+            setTimeout(function() {
+                const reply = getBotReply(message);
+                appendChatMessage(reply.html, 'bot', reply.isHtml);
+            }, 300);
+        }
+
+        chatToggle?.addEventListener('click', function() {
+            chatbot.classList.toggle('open');
+            if (chatbot.classList.contains('open')) userInput?.focus();
+        });
+
+        closeChat?.addEventListener('click', function() {
+            chatbot.classList.remove('open');
+        });
+
+        userInput?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
             }
         });
     </script>

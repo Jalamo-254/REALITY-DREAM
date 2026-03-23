@@ -105,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if (text.includes('emergency') || text.includes('urgent') || text.includes('help now') || text.includes('asap') || text.includes('staff')) {
         return { html: "Emergency support:<br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.php' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>", isHtml: true };
       }
-      if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'Call 0722 729 198 / 0743 187 154 or email realitydreaminternational@gmail.com.', isHtml: false };
-      if (text.includes('enroll') || text.includes('register')) return { html: 'Go to enroll.php to submit an enrollment form.', isHtml: false };
+      if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'Call 0722 729 198 / 0743 187 154 or email realitydreamacademy@gmail.com.', isHtml: false };
+      if (text.includes('enroll') || text.includes('register')) return { html: 'Go to enroll_redirect.php to submit an enrollment form.', isHtml: false };
       return { html: "I can connect you to customer care. If it's urgent, type: emergency.", isHtml: false };
     }
 
@@ -132,3 +132,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </script>
 </body>
 </html>
+
+

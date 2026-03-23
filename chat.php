@@ -79,7 +79,7 @@ if (contains_any($text, ['emergency', 'urgent', 'help now', 'asap', 'staff'])) {
 } elseif (contains_any($text, ['fee', 'price', 'cost'])) {
     $response['reply'] = 'Please check the Fees section on the home page for the latest course fees.';
 } elseif (contains_any($text, ['contact', 'phone', 'email'])) {
-    $response['reply'] = 'Call 0722 729 198 / 0743 187 154 or email realitydreaminternational@gmail.com.';
+    $response['reply'] = 'Call 0722 729 198 / 0743 187 154 or email realitydreamacademy@gmail.com.';
 } elseif (contains_any($text, ['location', 'where'])) {
     $response['reply'] = 'We are in Kilifi Town, Ar Rayan Complex, Opp Titanic Building, Ground Floor Door 7.';
 } elseif (contains_any($text, ['enroll', 'register', 'admission'])) {
@@ -91,3 +91,4 @@ if (contains_any($text, ['emergency', 'urgent', 'help now', 'asap', 'staff'])) {
 }
 
 echo json_encode($response);
+

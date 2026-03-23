@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYES ELECTRONICS | Gadget Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #070b13;
+            --card: #0f172a;
+            --line: #243041;
+            --primary: #377d3e;
+            --accent: #6b3e93;
+            --warm: #e38822;
+        }
+        body { font-family: 'Sora', sans-serif; background: var(--bg); color: #e5e7eb; }
+        .hero-glow {
+            background:
+                radial-gradient(circle at 18% 20%, rgba(55, 125, 62, .30), transparent 35%),
+                radial-gradient(circle at 85% 15%, rgba(107, 62, 147, .30), transparent 38%),
+                linear-gradient(160deg, #0b1220, #111827 55%, #0f172a);
+        }
+        .glass-card {
+            background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(10, 17, 32, .98));
+            border: 1px solid var(--line);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 34px rgba(0, 0, 0, .35);
+            border-color: rgba(99, 102, 241, .35);
+        }
+        .chip.active {
+            background: #ffffff;
+            color: #111827;
+            border-color: #ffffff;
+        }
+        .shop-menu, .course-menu { position: relative; }
+        .shop-dropdown, .course-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            width: 230px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            box-shadow: 0 20px 38px rgba(0, 0, 0, .35);
+            padding: 8px;
+            display: none;
+            z-index: 70;
+        }
+        .shop-menu:hover .shop-dropdown,
+        .shop-menu:focus-within .shop-dropdown,
+        .course-menu:hover .course-dropdown,
+        .course-menu:focus-within .course-dropdown {
+            display: block;
+        }
+        .shop-dropdown a, .course-dropdown a {
+            display: block;
+            padding: 9px 10px;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all .2s ease;
+        }
+        .shop-dropdown a:hover, .course-dropdown a:hover { background: #1e293b; color: #86efac; }
+        .shop-target { scroll-margin-top: 110px; }
+    </style>
+</head>
+<body>
+    <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826; font-family: 'Poppins', sans-serif;">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center">
+                        <img src="./logo.jpg" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+                        <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">About</a>
+                    <div class="course-menu">
+                        <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-2 text-[10px]"></i></a>
+                        <div class="course-dropdown">
+                            <a href="programs.php#cctv-installation">CCTV Installation</a>
+                            <a href="programs.php#solar-installation">Solar Installation</a>
+                            <a href="programs.php#entrepreneurship">Entrepreneurship</a>
+                            <a href="programs.php#front-desk-cashier">Front Desk & Cashier</a>
+                            <a href="programs.php#computer-packages">Computer Packages</a>
+                            <a href="programs.php#content-videography">Content & Videography</a>
+                        </div>
+                    </div>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Gallery</a>
+                    <div class="shop-menu">
+                        <a href="shop.html" class="text-green-300 font-medium transition text-sm inline-flex items-center">Shop <i class="fas fa-chevron-down ml-2 text-[10px]"></i></a>
+                        <div class="shop-dropdown">
+                            <a href="#cctv-cameras">CCTV Cameras</a>
+                            <a href="#key-cutting">Key Cuttings</a>
+                            <a href="#wifi-installation">WiFi Installation</a>
+                            <a href="#solar-panels">Solar Panels</a>
+                            <a href="#electric-fence">Electric Fence</a>
+                            <a href="#laser-sensors">Laser Sensors</a>
+                            <a href="#access-control">Access Control</a>
+                            <a href="#installation-tools">Installation Tools</a>
+                        </div>
+                    </div>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Blog</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Contact</a>
+                    <a href="enroll_redirect.php" class="transition-all text-white font-semibold py-1.5 px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93;">
+                        <i class="fas fa-user-graduate text-xs"></i>
+                        <span>Enroll</span>
+                    </a>
+                </div>
+
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.php#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.php#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.php#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.php#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.php#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.php#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
+                    <a href="shop.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
+                    <a href="#cctv-cameras" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Cameras</a>
+                    <a href="#key-cutting" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Key Cuttings</a>
+                    <a href="#wifi-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- WiFi Installation</a>
+                    <a href="#solar-panels" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Panels</a>
+                    <a href="#electric-fence" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Electric Fence</a>
+                    <a href="#laser-sensors" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Laser Sensors</a>
+                    <a href="#access-control" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Access Control</a>
+                    <a href="#installation-tools" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Installation Tools</a>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    <a href="enroll_redirect.php" class="text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93;">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Enroll Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-glow border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <p class="uppercase text-xs tracking-[0.2em] text-green-300 font-semibold mb-3">HAYES ELECTRONICS</p>
+                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl">Modern Gadget Shop for Security, Solar, and Smart Tech</h1>
+                <p class="mt-4 max-w-2xl text-slate-300">Find trusted gadgets used in our practical training and field installations. Order quickly via WhatsApp or call our team for same-day support in Kilifi.</p>
+                <div class="mt-7 flex flex-wrap gap-3">
+                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background: linear-gradient(135deg,#25D366,#128C7E);">
+                        <i class="fab fa-whatsapp mr-2"></i>Order on WhatsApp
+                    </a>
+                    <a href="tel:+254743187154" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold border border-slate-500 text-slate-200 hover:text-white hover:border-slate-300">
+                        <i class="fas fa-phone mr-2"></i>Call HAYES ELECTRONICS
+                    </a>
+                </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+                <img src="Assets/images/shop 1.jpeg" alt="HAYES ELECTRONICS gadget shop display" class="w-full h-[260px] md:h-[340px] object-cover">
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 md:py-12">
+        <section>
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button class="chip active px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="all">All Gadgets</button>
+                <button class="chip px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="security">Security</button>
+                <button class="chip px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="solar">Solar</button>
+                <button class="chip px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="accessories">Accessories</button>
+            </div>
+
+            <div id="shopGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+                <article id="cctv-cameras" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
+                    <img src="Assets/images/cctv camera.png" alt="CCTV installation kit" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
+                        <h3 class="font-bold mt-1">CCTV Camera Kit</h3>
+                        <p class="text-slate-300 text-sm mt-2">4-channel starter bundle with cables and setup support.</p>
+                    </div>
+                </article>
+
+                <article id="electric-fence" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
+                    <img src="Assets/images/electric fencee.png" alt="Electric fence equipment" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
+                        <h3 class="font-bold mt-1">Electric Fence Set</h3>
+                        <p class="text-slate-300 text-sm mt-2">Reliable fencing package for homes and business compounds.</p>
+                    </div>
+                </article>
+
+                <article id="laser-sensors" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
+                    <img src="Assets/images/shop-svg/laser-sensor.svg" alt="Laser security detector" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
+                        <h3 class="font-bold mt-1">Laser Beam Sensor</h3>
+                        <p class="text-slate-300 text-sm mt-2">Perimeter detection accessory with indoor/outdoor options.</p>
+                    </div>
+                </article>
+
+                <article id="solar-panels" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="solar">
+                    <img src="Assets/images/PANEL.jpg" alt="Solar panel in stock" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
+                        <h3 class="font-bold mt-1">Solar Panel Units</h3>
+                        <p class="text-slate-300 text-sm mt-2">Durable panel options for home backup and business use.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden" data-group="solar">
+                    <img src="Assets/images/PANELS.jpg" alt="Multiple solar panels" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
+                        <h3 class="font-bold mt-1">Solar Panel Bundles</h3>
+                        <p class="text-slate-300 text-sm mt-2">Panel combinations for larger installations and institutions.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden" data-group="solar">
+                    <img src="Assets/images/SOLAR INSTA.jpg" alt="Solar installation accessories" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
+                        <h3 class="font-bold mt-1">Solar Inverter & Parts</h3>
+                        <p class="text-slate-300 text-sm mt-2">Power conversion accessories selected for local conditions.</p>
+                    </div>
+                </article>
+
+                <article id="installation-tools" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="accessories">
+                    <img src="Assets/images/tool kit.png" alt="Shop accessories shelf" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
+                        <h3 class="font-bold mt-1">Installers Toolkit</h3>
+                        <p class="text-slate-300 text-sm mt-2">Daily-use tools and mounting accessories for technicians.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden" data-group="accessories">
+                    <img src="Assets/images/hayess.jpeg" alt="Reality Dream shop stock" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
+                        <h3 class="font-bold mt-1">General Gadget Stock</h3>
+                        <p class="text-slate-300 text-sm mt-2">Chargers, connectors, adapters, and custom order requests.</p>
+                    </div>
+                </article>
+
+                <article id="key-cutting" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="accessories">
+                    <img src="Assets/images/key cutting machine.png" alt="Key cutting service and accessories" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
+                        <h3 class="font-bold mt-1">Key Cuttings</h3>
+                        <p class="text-slate-300 text-sm mt-2">Precision key duplication service for home and office lock types.</p>
+                    </div>
+                </article>
+
+                <article id="wifi-installation" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
+                    <img src="Assets/images/router.png" alt="WiFi router and installation setup" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
+                        <h3 class="font-bold mt-1">WiFi Installation</h3>
+                        <p class="text-slate-300 text-sm mt-2">Router setup, range extension, and secure home/office internet coverage.</p>
+                    </div>
+                </article>
+
+                <article id="access-control" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
+                    <img src="Assets/images/access control (1).png" alt="Access control system devices" class="w-full h-52 object-cover">
+                    <div class="p-4">
+                        <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
+                        <h3 class="font-bold mt-1">Access Control</h3>
+                        <p class="text-slate-300 text-sm mt-2">Door access, keypad, and lock-system solutions for premises security.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="mt-12 rounded-2xl border border-slate-700 p-6 md:p-8" style="background: linear-gradient(120deg, rgba(55,125,62,.15), rgba(107,62,147,.15));">
+            <h2 class="text-2xl font-extrabold">Need a specific gadget?</h2>
+            <p class="text-slate-200 mt-2">Send us the item name and quantity and we will confirm stock plus delivery options.</p>
+            <div class="mt-5 flex flex-wrap gap-3">
+                <a href="https://wa.me/254722729198?text=Hello%20Reality%20Dream%20Shop%2C%20I%20want%20to%20buy%20a%20gadget." target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background-color: #25D366;">
+                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp Shop
+                </a>
+                <a href="contact.php" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background-color: #6B3E93;">
+                    <i class="fas fa-envelope mr-2"></i>Request by Email
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-6 md:py-8 mt-10" style="background-color: #121826; color: white; font-family: 'Poppins', sans-serif;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2">Reality Dream Institute</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Training + practical gadget supply for homes, businesses, and institutions.</p>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2">Shop Links</h3>
+                    <div class="space-y-1 text-sm">
+                        <a href="programs.php" class="block text-gray-300 hover:text-green-300">Courses</a>
+                        <a href="gallery.html" class="block text-gray-300 hover:text-green-300">Gallery</a>
+                        <a href="contact.php" class="block text-gray-300 hover:text-green-300">Contact</a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2">Quick Order</h3>
+                    <div class="space-y-2 text-sm">
+                        <a href="tel:+254722729198" class="block text-gray-300 hover:text-green-300"><i class="fas fa-phone mr-2"></i>0722 729 198</a>
+                        <a href="https://wa.me/254743187154" target="_blank" class="block text-gray-300 hover:text-green-300"><i class="fab fa-whatsapp mr-2"></i>WhatsApp 0743 187 154</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-4 text-center text-sm text-gray-300">
+                &copy; <span id="current-year">2024</span> Reality Dream Institute. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        const chips = document.querySelectorAll('.chip');
+        const cards = document.querySelectorAll('#shopGrid article');
+        chips.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                chips.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.dataset.filter;
+                cards.forEach((card) => {
+                    const show = filter === 'all' || card.dataset.group === filter;
+                    card.style.display = show ? '' : 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -8,6 +8,129 @@ require_once 'db_config.php';
 
 $response = ['success' => false, 'message' => '', 'errors' => []];
 
+function build_public_file_url($relativePath) {
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
+    $scriptDir = $scriptDir === '/' ? '' : rtrim($scriptDir, '/');
+    return $scheme . '://' . $host . $scriptDir . '/' . ltrim($relativePath, '/');
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_whatsapp'])) {
+    $targetPhone = preg_replace('/\D/', '', (string)($_POST['send_whatsapp'] ?? ''));
+    $allowedTargets = ['254722729198', '254743187154'];
+
+    if (!in_array($targetPhone, $allowedTargets, true)) {
+        $response['message'] = 'Invalid WhatsApp recipient selected.';
+    } else {
+        // Sanitize and validate inputs
+        $firstName = trim($_POST['first_name'] ?? '');
+        $lastName = trim($_POST['last_name'] ?? '');
+        $phone = trim($_POST['phone'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $course = trim($_POST['course'] ?? '');
+        $message = trim($_POST['message'] ?? '');
+
+        if (empty($firstName)) {
+            $response['errors']['first_name'] = 'First name is required';
+        } elseif (strlen($firstName) < 2) {
+            $response['errors']['first_name'] = 'First name must be at least 2 characters';
+        }
+
+        if (empty($lastName)) {
+            $response['errors']['last_name'] = 'Last name is required';
+        } elseif (strlen($lastName) < 2) {
+            $response['errors']['last_name'] = 'Last name must be at least 2 characters';
+        }
+
+        if (empty($phone)) {
+            $response['errors']['phone'] = 'Phone number is required';
+        } elseif (!preg_match('/^[0-9\s\-\+\(\)]{7,}$/', $phone)) {
+            $response['errors']['phone'] = 'Please enter a valid phone number';
+        }
+
+        if (empty($email)) {
+            $response['errors']['email'] = 'Email address is required';
+        } elseif (preg_match('/\s/', $email)) {
+            $response['errors']['email'] = 'Email address cannot contain spaces';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $response['errors']['email'] = 'Please enter a valid email address';
+        }
+
+        if (empty($course)) {
+            $response['errors']['course'] = 'Please select a course';
+        }
+
+        if (empty($message)) {
+            $response['errors']['message'] = 'Message is required';
+        } elseif (strlen($message) < 1) {
+            $response['errors']['message'] = 'Message must be at least 10 characters';
+        }
+
+        if (empty($response['errors'])) {
+            $firstName = htmlspecialchars($firstName, ENT_QUOTES, 'UTF-8');
+            $lastName = htmlspecialchars($lastName, ENT_QUOTES, 'UTF-8');
+            $phone = htmlspecialchars($phone, ENT_QUOTES, 'UTF-8');
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+            $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
+
+            // Handle attachment upload (optional)
+            $attachmentPath = null;
+            if (!empty($_FILES['attachment']) && $_FILES['attachment']['error'] !== UPLOAD_ERR_NO_FILE) {
+                $file = $_FILES['attachment'];
+                $allowed = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png'];
+                $maxSize = 5 * 1024 * 1024; // 5MB
+                $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
+                if ($file['error'] === UPLOAD_ERR_OK && in_array($ext, $allowed, true) && $file['size'] <= $maxSize) {
+                    $safeName = time() . '_' . preg_replace('/[^A-Za-z0-9._-]/', '_', $file['name']);
+                    $target = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $safeName;
+                    if (move_uploaded_file($file['tmp_name'], $target)) {
+                        $attachmentPath = 'uploads/' . $safeName;
+                    } else {
+                        $response['errors']['attachment'] = 'Attachment upload failed. Please try again.';
+                    }
+                } else {
+                    $response['errors']['attachment'] = 'Invalid file. Allowed: PDF, DOC, DOCX, JPG, JPEG, PNG (max 5MB).';
+                }
+            }
+
+            if (empty($response['errors'])) {
+                // Save to DB first
+                $insertSQL = "INSERT INTO contacts (first_name, last_name, email, phone, course, message, attachment) 
+                              VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($insertSQL);
+                if ($stmt) {
+                    $stmt->bind_param("sssssss", $firstName, $lastName, $email, $phone, $course, $message, $attachmentPath);
+                    $stmt->execute();
+                    $stmt->close();
+                }
+
+                $attachmentUrl = $attachmentPath ? build_public_file_url($attachmentPath) : '';
+                $whatsappMessage = "*New Inquiry - Reality Dream Institute*\n\n"
+                    . "*First Name:* {$firstName}\n"
+                    . "*Last Name:* {$lastName}\n"
+                    . "*Phone:* {$phone}\n"
+                    . "*Email:* {$email}\n"
+                    . "*Course Interested In:* {$course}\n"
+                    . "*Message:* {$message}\n";
+
+                if (!empty($attachmentUrl)) {
+                    $whatsappMessage .= "*Attachment Link:* {$attachmentUrl}\n";
+                }
+
+                $waUrl = 'https://wa.me/' . $targetPhone . '?text=' . rawurlencode($whatsappMessage);
+                header('Location: ' . $waUrl);
+                exit;
+            }
+        }
+
+        if (!empty($response['errors'])) {
+            $response['message'] = 'Please fix the errors below and try again.';
+        }
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
     // Sanitize and validate inputs
     $firstName = trim($_POST['first_name'] ?? '');
@@ -50,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
     
     if (empty($message)) {
         $response['errors']['message'] = 'Message is required';
-    } elseif (strlen($message) < 10) {
+    } elseif (strlen($message) < 1) {
         $response['errors']['message'] = 'Message must be at least 10 characters';
     }
     
@@ -97,8 +220,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
             }
         }
         
-        // Prepare email to admin
-        $to = 'realitydreaminternational@gmail.com';
+        // Prepare email to admin (supports multiple recipients)
+        require_once 'mail_config.php';
+        $adminRecipients = get_admin_contact_emails();
         $subject = "New Contact Form Submission from {$firstName} {$lastName}";
         
         $emailBody = "
@@ -145,12 +269,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
         
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-        $headers .= "From: realitydreaminternational@gmail.com" . "\r\n";
+        $headers .= "From: " . (getenv('MAIL_FROM') ?: 'realitydreamacademy@gmail.com') . "\r\n";
         $headers .= "Reply-To: " . $email . "\r\n";
         
-        // Send email to admin (use helper if available)
-        require_once 'mail_config.php';
-        $mailSent = send_site_mail($to, $subject, $emailBody, $headers);
+        // Send email to all configured admin recipients
+        $mailSent = false;
+        foreach ($adminRecipients as $adminEmail) {
+            $sent = send_site_mail($adminEmail, $subject, $emailBody, $headers);
+            $mailSent = $mailSent || $sent;
+        }
         
         if ($mailSent) {
             $response['success'] = true;
@@ -173,7 +300,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
             
             $userHeaders = "MIME-Version: 1.0" . "\r\n";
             $userHeaders .= "Content-type: text/html; charset=UTF-8" . "\r\n";
-            $userHeaders .= "From: realitydreaminternational@gmail.com\r\n";
+            $userHeaders .= "From: " . (getenv('MAIL_FROM') ?: 'realitydreamacademy@gmail.com') . "\r\n";
             
             send_site_mail($email, $userSubject, $userBody, $userHeaders);
         } else {
@@ -233,16 +360,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                 <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
                     <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
-                    <a href="index.html#courses" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
+                    <div class="relative group">
+                        <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="programs.php#cctv-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Installation</a>
+                            <a href="programs.php#solar-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Installation</a>
+                            <a href="programs.php#entrepreneurship" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Entrepreneurship</a>
+                            <a href="programs.php#front-desk-cashier" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Front Desk & Cashier</a>
+                            <a href="programs.php#computer-packages" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Computer Packages</a>
+                            <a href="programs.php#content-videography" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Content & Videography</a>
+                        </div>
+                    </div>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Gallery</a>
+                    <div class="relative group">
+                        <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Shop <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="shop.html#cctv-cameras" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Cameras</a>
+                            <a href="shop.html#key-cutting" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Key Cuttings</a>
+                            <a href="shop.html#wifi-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">WiFi Installation</a>
+                            <a href="shop.html#solar-panels" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Panels</a>
+                            <a href="shop.html#electric-fence" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Electric Fence</a>
+                            <a href="shop.html#laser-sensors" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Laser Sensors</a>
+                        </div>
+                    </div>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-                    <a href="index.html#fees" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
                     <a href="contact.php" class="text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
                     <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
                         <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
                             <i class="fas fa-file-pdf text-xs"></i>
                             <span class="hidden sm:inline">Brochure</span>
                         </button>
-                        <button onclick="window.location.href='enroll.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <button onclick="window.location.href='enroll_redirect.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-user-graduate text-xs"></i>
                             <span class="hidden sm:inline">Enroll</span>
                         </button>
@@ -260,16 +409,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                 <div class="flex flex-col space-y-3">
                     <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
-                    <a href="index.html#courses" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.php#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.php#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.php#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.php#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.php#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.php#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
+                    <a href="shop.html#cctv-cameras" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Cameras</a>
+                    <a href="shop.html#key-cutting" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Key Cuttings</a>
+                    <a href="shop.html#wifi-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- WiFi Installation</a>
+                    <a href="shop.html#solar-panels" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Panels</a>
+                    <a href="shop.html#electric-fence" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Electric Fence</a>
+                    <a href="shop.html#laser-sensors" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Laser Sensors</a>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-                    <a href="index.html#fees" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
                     <a href="contact.php" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
                     <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
                         <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
                             <i class="fas fa-file-pdf"></i>
                             <span>Download Brochure</span>
                         </button>
-                        <button onclick="window.location.href='enroll.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <button onclick="window.location.href='enroll_redirect.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-user-graduate"></i>
                             <span>Enroll Now</span>
                         </button>
@@ -323,7 +486,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                             </div>
                             <div>
                                 <h4 class="font-bold text-base md:text-lg mb-0.5">Email Address</h4>
-                                <p class="text-gray-600 text-sm md:text-base">realitydreaminternational@gmail.com</p>
+                                <p class="text-gray-600 text-sm md:text-base">realitydreamacademy@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -440,12 +603,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                             <label class="block text-gray-700 mb-1 md:mb-1 text-sm md:text-base">Attachment (optional)</label>
                             <input type="file" name="attachment" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="w-full" />
                             <p class="text-gray-500 text-xs mt-1">Allowed: PDF, DOC, JPG, PNG - Max 5MB</p>
+                            <?php if (!empty($response['errors']['attachment'])): ?>
+                                <p class="text-red-500 text-xs mt-1"><i class="fas fa-times-circle"></i> <?php echo $response['errors']['attachment']; ?></p>
+                            <?php endif; ?>
                         </div>
                         
-                        <button type="submit" name="submit_contact" value="1" class="btn-enroll transition-all text-white font-semibold w-full py-2.5 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base hover:shadow-lg" style="background-color: #6B3E93; transition: all 0.3s ease;">
-                            <i class="fas fa-paper-plane text-sm"></i>
-                            <span>Send Message</span>
-                        </button>
+                        <div class="space-y-2">
+                            <button type="submit" name="send_whatsapp" value="254722729198" class="inline-flex items-center justify-center w-full py-2.5 rounded-md text-sm md:text-base font-semibold text-white hover:shadow-lg transition-all" style="background-color: #25D366;">
+                                <i class="fab fa-whatsapp mr-2 text-base"></i>
+                                <span>WhatsApp 0722 729 198</span>
+                            </button>
+                            <button type="submit" name="send_whatsapp" value="254743187154" class="inline-flex items-center justify-center w-full py-2.5 rounded-md text-sm md:text-base font-semibold text-white hover:shadow-lg transition-all" style="background-color: #128C7E;">
+                                <i class="fab fa-whatsapp mr-2 text-base"></i>
+                                <span>WhatsApp 0743 187 154</span>
+                            </button>
+                            <button type="submit" name="submit_contact" value="1" class="inline-flex items-center justify-center w-full py-2.5 rounded-md text-sm md:text-base font-semibold text-white hover:shadow-lg transition-all" style="background-color: #6B3E93;">
+                                <i class="fas fa-envelope mr-2 text-base"></i>
+                                <span>Send Request by Email</span>
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -465,11 +641,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
                 <iframe id="pdfFrame" src="./Bronchure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
             </div>
             <div class="flex justify-end items-center gap-3 p-4 border-t border-gray-200 bg-gray-50">
-                <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition">
+                <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 text-white font-medium rounded-md transition" style="background-color:#6B3E93;">
                     <i class="fas fa-print"></i>
                     <span>Print</span>
                 </button>
-                <a href="./Bronchure.pdf" download class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
+                <a href="./Bronchure.pdf" download class="flex items-center gap-2 px-4 py-2 text-white font-medium rounded-md transition" style="background-color:#377D3E;">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
@@ -481,31 +657,114 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
         </div>
     </div>
 
-    <footer class="py-8 md:py-12 text-white" style="background-color: #121826;">
+    <footer class="py-6 md:py-8" style="background-color: #121826; color: white;">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
                 <div>
-                    <h3 class="text-base md:text-lg font-bold mb-3">Reality Dream Institute</h3>
-                    <p class="text-gray-300 text-sm md:text-base">Business, Tech & Innovation Hub</p>
-                    <p class="text-gray-300 text-sm md:text-base mt-2">Kilifi Town, Kenya</p>
+                    <div class="flex items-start mb-3 md:mb-4">
+                        <div class="flex-shrink-0 mr-2">
+                            <img src="./logo.svg" alt="Reality Dream Institute Logo" class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
+                        </div>
+                        <div>
+                            <h2 class="text-base md:text-lg font-bold leading-tight">Reality Dream Institute</h2>
+                            <p class="text-xs md:text-sm text-gray-300 mt-0.5">Business, Tech & Innovation Hub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm md:text-base mb-3 leading-relaxed">
+                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    </p>
+                    <div class="space-y-1">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base">Kilifi Town, Ar Rayan Complex</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <div class="text-sm md:text-base">
+                                <a href="tel:+254722729198" class="text-gray-300 hover:text-green-300 transition">0722 729 198</a>
+                                <span class="text-gray-500 mx-1">|</span>
+                                <a href="tel:+254743187154" class="text-gray-300 hover:text-green-300 transition">0743 187 154</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
-                    <h3 class="text-base md:text-lg font-bold mb-3">Quick Links</h3>
-                    <ul class="space-y-2">
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Quick Links</h3>
+                    <ul class="space-y-1 md:space-y-2">
                         <li><a href="index.html#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
                         <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
-                        <li><a href="blog.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Blog</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
                         <li><a href="contact.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h3 class="text-base md:text-lg font-bold mb-3">Reach Us</h3>
-                    <p class="text-gray-300 text-sm md:text-base">0722 729 198</p>
-                    <p class="text-gray-300 text-sm md:text-base">0743 187 154</p>
-                    <p class="text-gray-300 text-sm md:text-base mt-2 break-all">realitydreaminternational@gmail.com</p>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Contact & Social</h3>
+                    <p class="text-gray-300 text-sm md:text-base mb-2 md:mb-3 leading-relaxed">
+                        Follow us for updates and reach us quickly via call or WhatsApp.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base break-all">realitydreamacademy@gmail.com</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" aria-label="Facebook" class="w-9 h-9 rounded-full text-gray-200 flex items-center justify-center hover:text-white transition" style="background: linear-gradient(135deg,#1877f2,#0d5fcb);">
+                                <i class="fab fa-facebook-f text-sm"></i>
+                            </a>
+                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://www.twitter.com/realitydreamacademy" target="_blank" aria-label="X / Twitter" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition border border-white/30 shadow-sm" style="background: linear-gradient(135deg,#000000,#1f2937);">
+                                <span class="font-bold text-xs tracking-wide">X</span>
+                            </a>
+                            <a href="https://wa.me/254722729198" target="_blank" aria-label="WhatsApp" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#25D366,#128C7E);">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
+
+                        <div class="pt-3 space-y-2">
+                            <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Quick Contact</p>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0722 729 198</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254722729198" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0743 187 154</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254743187154" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254743187154" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-6 pt-4 text-center">
+
+            <div class="border-t border-gray-700 mt-4 md:mt-6 pt-4 text-center">
                 <p class="text-gray-300 text-sm md:text-base">
                     &copy; <span id="current-year">2024</span> Reality Dream Institute. All rights reserved.
                 </p>
@@ -584,7 +843,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_contact'])) {
             }
             if (text.includes('course')) return { html: 'We offer CCTV, Solar, Entrepreneurship, Front Desk, Computer Packages, and Content Creation.', isHtml: false };
             if (text.includes('fee') || text.includes('price') || text.includes('cost')) return { html: 'Please check the Fees section on the home page for current course fees.', isHtml: false };
-            if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'Call 0722 729 198 / 0743 187 154 or email realitydreaminternational@gmail.com.', isHtml: false };
+            if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'Call 0722 729 198 / 0743 187 154 or email realitydreamacademy@gmail.com.', isHtml: false };
             if (text.includes('enroll') || text.includes('register')) return { html: 'Use the Enroll button in the menu to open the enrollment form.', isHtml: false };
             return { html: "I can help with courses, fees, contact, and enrollment. If it's urgent, type: emergency.", isHtml: false };
         }
@@ -616,3 +875,8 @@ $conn->close();
 ?>
 </body>
 </html>
+
+
+
+
+

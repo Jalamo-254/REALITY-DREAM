@@ -4,10 +4,10 @@
 // ============================================
 
 // Database connection details for XAMPP
-$db_host = 'localhost';
-$db_user = 'root';
-$db_password = '';
-$db_name = 'Reality_Dream';
+$db_host = getenv('DB_HOST') ?: 'localhost';
+$db_user = getenv('DB_USER') ?: 'root';
+$db_password = getenv('DB_PASSWORD') ?: '';
+$db_name = getenv('DB_NAME') ?: 'Reality_Dream';
 
 // Create connection
 $conn = new mysqli($db_host, $db_user, $db_password, $db_name);
@@ -20,8 +20,8 @@ if ($conn->connect_error) {
     ]));
 }
 
-// Set charset to UTF-8
-$conn->set_charset('utf8');
+// Set charset to UTF-8 MB4
+$conn->set_charset('utf8mb4');
 
 // Create contacts table if it doesn't exist
 $createTableSQL = "CREATE TABLE IF NOT EXISTS contacts (
@@ -34,7 +34,10 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS contacts (
     message TEXT NOT NULL,
     attachment VARCHAR(255) DEFAULT NULL,
     submitted_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(20) DEFAULT 'New'
+    status VARCHAR(20) DEFAULT 'New',
+    KEY idx_contacts_status (status),
+    KEY idx_contacts_submitted_date (submitted_date),
+    KEY idx_contacts_email (email)
 )";
 
 if (!$conn->query($createTableSQL)) {
@@ -48,8 +51,15 @@ $createEnrollmentsSQL = "CREATE TABLE IF NOT EXISTS enrollments (
     email VARCHAR(150) NOT NULL,
     phone VARCHAR(20) NOT NULL,
     course VARCHAR(200) NOT NULL,
+    study_mode VARCHAR(50) DEFAULT NULL,
+    intake_month VARCHAR(30) DEFAULT NULL,
+    notes TEXT DEFAULT NULL,
     attachment VARCHAR(255) DEFAULT NULL,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    status VARCHAR(20) DEFAULT 'New',
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    KEY idx_enrollments_status (status),
+    KEY idx_enrollments_submitted_at (submitted_at),
+    KEY idx_enrollments_email (email)
 )";
 
 if (!$conn->query($createEnrollmentsSQL)) {
@@ -63,6 +73,46 @@ if ($checkEnrollAttachment && $checkEnrollAttachment->num_rows === 0) {
         error_log("Error adding enrollments.attachment column: " . $conn->error);
     }
 }
+
+// Ensure status column exists for enrollments
+$checkEnrollStatus = $conn->query("SHOW COLUMNS FROM enrollments LIKE 'status'");
+if ($checkEnrollStatus && $checkEnrollStatus->num_rows === 0) {
+    if (!$conn->query("ALTER TABLE enrollments ADD COLUMN status VARCHAR(20) DEFAULT 'New' AFTER attachment")) {
+        error_log("Error adding enrollments.status column: " . $conn->error);
+    }
+}
+
+// Ensure study_mode column exists for enrollments
+$checkEnrollStudyMode = $conn->query("SHOW COLUMNS FROM enrollments LIKE 'study_mode'");
+if ($checkEnrollStudyMode && $checkEnrollStudyMode->num_rows === 0) {
+    if (!$conn->query("ALTER TABLE enrollments ADD COLUMN study_mode VARCHAR(50) DEFAULT NULL AFTER course")) {
+        error_log("Error adding enrollments.study_mode column: " . $conn->error);
+    }
+}
+
+// Ensure intake_month column exists for enrollments
+$checkEnrollIntake = $conn->query("SHOW COLUMNS FROM enrollments LIKE 'intake_month'");
+if ($checkEnrollIntake && $checkEnrollIntake->num_rows === 0) {
+    if (!$conn->query("ALTER TABLE enrollments ADD COLUMN intake_month VARCHAR(30) DEFAULT NULL AFTER study_mode")) {
+        error_log("Error adding enrollments.intake_month column: " . $conn->error);
+    }
+}
+
+// Ensure notes column exists for enrollments
+$checkEnrollNotes = $conn->query("SHOW COLUMNS FROM enrollments LIKE 'notes'");
+if ($checkEnrollNotes && $checkEnrollNotes->num_rows === 0) {
+    if (!$conn->query("ALTER TABLE enrollments ADD COLUMN notes TEXT DEFAULT NULL AFTER intake_month")) {
+        error_log("Error adding enrollments.notes column: " . $conn->error);
+    }
+}
+
+// Ensure indexes exist for faster admin filtering/search
+@($conn->query("ALTER TABLE contacts ADD INDEX IF NOT EXISTS idx_contacts_status (status)"));
+@($conn->query("ALTER TABLE contacts ADD INDEX IF NOT EXISTS idx_contacts_submitted_date (submitted_date)"));
+@($conn->query("ALTER TABLE contacts ADD INDEX IF NOT EXISTS idx_contacts_email (email)"));
+@($conn->query("ALTER TABLE enrollments ADD INDEX IF NOT EXISTS idx_enrollments_status (status)"));
+@($conn->query("ALTER TABLE enrollments ADD INDEX IF NOT EXISTS idx_enrollments_submitted_at (submitted_at)"));
+@($conn->query("ALTER TABLE enrollments ADD INDEX IF NOT EXISTS idx_enrollments_email (email)"));
 
 // Create admin users table if it doesn't exist
 $createAdminSQL = "CREATE TABLE IF NOT EXISTS admin_users (

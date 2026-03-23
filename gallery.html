@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reality Dream Institute | Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; background: #070b13; color: #e5e7eb; }
+        .hero-glow {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(55, 125, 62, .35), transparent 35%),
+                radial-gradient(circle at 80% 10%, rgba(107, 62, 147, .35), transparent 38%),
+                linear-gradient(160deg, #0b1220, #111827 55%, #0f172a);
+        }
+        .filter-btn.active { background: #ffffff; color: #111827; }
+        .gallery-card {
+            background: #0f172a;
+            border: 1px solid #243041;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px rgba(0, 0, 0, .35);
+        }
+    </style>
+</head>
+<body>
+    <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826; font-family: 'Poppins', sans-serif;">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center">
+                        <img src="./logo.jpg" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+                        <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
+                    <div class="relative group">
+                        <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="programs.php#cctv-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Installation</a>
+                            <a href="programs.php#solar-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Installation</a>
+                            <a href="programs.php#entrepreneurship" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Entrepreneurship</a>
+                            <a href="programs.php#front-desk-cashier" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Front Desk & Cashier</a>
+                            <a href="programs.php#computer-packages" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Computer Packages</a>
+                            <a href="programs.php#content-videography" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Content & Videography</a>
+                        </div>
+                    </div>
+                    <a href="gallery.html" class="text-green-300 font-medium transition text-sm xl:text-sm">Gallery</a>
+                    <div class="relative group">
+                        <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Shop <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="shop.html#cctv-cameras" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Cameras</a>
+                            <a href="shop.html#key-cutting" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Key Cuttings</a>
+                            <a href="shop.html#wifi-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">WiFi Installation</a>
+                            <a href="shop.html#solar-panels" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Panels</a>
+                            <a href="shop.html#electric-fence" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Electric Fence</a>
+                            <a href="shop.html#laser-sensors" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Laser Sensors</a>
+                        </div>
+                    </div>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+
+                    <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
+                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf text-xs"></i>
+                            <span class="hidden sm:inline">Brochure</span>
+                        </button>
+                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate text-xs"></i>
+                            <span class="hidden sm:inline">Enroll</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.php#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.php#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.php#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.php#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.php#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.php#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="gallery.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
+                    <a href="shop.html#cctv-cameras" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Cameras</a>
+                    <a href="shop.html#key-cutting" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Key Cuttings</a>
+                    <a href="shop.html#wifi-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- WiFi Installation</a>
+                    <a href="shop.html#solar-panels" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Panels</a>
+                    <a href="shop.html#electric-fence" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Electric Fence</a>
+                    <a href="shop.html#laser-sensors" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Laser Sensors</a>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+
+                    <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
+                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Download Brochure</span>
+                        </button>
+                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Enroll Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-glow">
+        <div class="max-w-7xl mx-auto px-4 py-14 md:py-20">
+            <p class="uppercase text-xs tracking-widest text-green-300 font-semibold mb-3">Campus Moments</p>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight max-w-3xl">Students & Trainers Gallery</h1>
+            <p class="mt-4 max-w-2xl text-slate-300">A visual look at practical sessions, field activities, classroom mentorship, and project outcomes at Reality Dream Institute.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 md:py-12">
+        <div class="flex flex-wrap gap-3 mb-8">
+            <button class="filter-btn active px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="all">All Photos</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="trainer">Trainers</button>
+            <button class="filter-btn px-4 py-2 rounded-full border border-slate-600 text-sm font-semibold" data-filter="student">Students</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="galleryGrid">
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/trainer (1).jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/hayess.jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/trainer (2).jpg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/trainer (2).jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/hayess.jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/hayess.jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/trainer (11).jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/trainer (11).jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/trainer (13).jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/trainer (13).jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/hayess.jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/hayess.jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+             <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/hayess.jpeg" alt="Institute trainers team" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/hayess.jpeg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Institute Team</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/HAYES.jpg" alt="Trainer profile" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/HAYES.jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Lead Mentor</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/computer training.jpg" alt="Computer trainer in class" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/computer training.jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Computer Skills Session</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/content and video.jpg" alt="Trainer during content class" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/content and video.jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Content Production Coaching</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/desk and casheir.jpg" alt="Front desk training mentor" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/desk and casheir.jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Front Desk Mentorship</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="trainer">
+                <img src="Assets/images/Solar training.jpg" alt="Solar trainer practical session" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/Solar training.jpg">
+                <div class="p-4"><p class="text-xs text-green-300 font-semibold uppercase">Trainer</p><h3 class="font-semibold mt-1">Solar Practical Training</h3></div>
+            </article>
+
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 1.jpg" alt="Student activity" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 1.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Hands-on Practice</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 2.jpg" alt="Students practical work" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 2.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Workshop Session</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 3.jpg" alt="Classroom learners" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 3.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Classroom Study</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 4.jpg" alt="Students in field work" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 4.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Field Activity</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 5.jpg" alt="Student project demo" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 5.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Project Demonstration</h3></div>
+            </article>
+            <article class="gallery-card rounded-xl overflow-hidden" data-group="student">
+                <img src="Assets/images/student 6.jpg" alt="Students group engagement" class="w-full h-60 object-cover cursor-zoom-in" data-full="Assets/images/student 6.jpg">
+                <div class="p-4"><p class="text-xs text-purple-300 font-semibold uppercase">Student</p><h3 class="font-semibold mt-1">Peer Learning Moment</h3></div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="py-6 md:py-8" style="background-color: #121826; color: white; font-family: 'Poppins', sans-serif;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+                <div>
+                    <div class="flex items-start mb-3 md:mb-4">
+                        <div class="flex-shrink-0 mr-2">
+                            <img src="./logo.svg" alt="Reality Dream Institute Logo" class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
+                        </div>
+                        <div>
+                            <h2 class="text-base md:text-lg font-bold leading-tight">Reality Dream Institute</h2>
+                            <p class="text-xs md:text-sm text-gray-300 mt-0.5">Business, Tech & Innovation Hub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm md:text-base mb-3 leading-relaxed">
+                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    </p>
+                    <div class="space-y-1">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base">Kilifi Town, Ar Rayan Complex</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <div class="text-sm md:text-base">
+                                <a href="tel:+254722729198" class="text-gray-300 hover:text-green-300 transition">0722 729 198</a>
+                                <span class="text-gray-500 mx-1">|</span>
+                                <a href="tel:+254743187154" class="text-gray-300 hover:text-green-300 transition">0743 187 154</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Quick Links</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="index.html#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
+                        <li><a href="gallery.html" class="text-green-300 transition text-sm md:text-base">Gallery</a></li>
+                        <li><a href="shop.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Shop</a></li>
+                        <li><a href="contact.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Contact & Social</h3>
+                    <p class="text-gray-300 text-sm md:text-base mb-2 md:mb-3 leading-relaxed">
+                        Follow us for updates on student work, trainers, and new intakes.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base break-all">realitydreamacademy@gmail.com</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" aria-label="Facebook" class="w-9 h-9 rounded-full text-gray-200 flex items-center justify-center hover:text-white transition" style="background: linear-gradient(135deg,#1877f2,#0d5fcb);">
+                                <i class="fab fa-facebook-f text-sm"></i>
+                            </a>
+                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://www.twitter.com/realitydreamacademy" target="_blank" aria-label="X / Twitter" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition border border-white/30 shadow-sm" style="background: linear-gradient(135deg,#000000,#1f2937);">
+                                <span class="font-bold text-xs tracking-wide">X</span>
+                            </a>
+                            <a href="https://wa.me/254722729198" target="_blank" aria-label="WhatsApp" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#25D366,#128C7E);">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
+
+                        <div class="pt-3 space-y-2">
+                            <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Quick Contact</p>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0722 729 198</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254722729198" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0743 187 154</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254743187154" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254743187154" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-5 pt-4 text-center text-gray-400 text-xs md:text-sm">
+                © <span id="year"></span> Reality Dream Institute. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/90 p-4">
+        <button id="closeLightbox" class="absolute top-5 right-5 text-white text-2xl"><i class="fas fa-times"></i></button>
+        <div class="w-full h-full flex items-center justify-center">
+            <img id="lightboxImage" src="" alt="Gallery preview" class="max-w-full max-h-full rounded-lg shadow-2xl">
+        </div>
+    </div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        function openPdfViewer() {
+            window.open('./Bronchure.pdf', '_blank');
+        }
+
+        document.querySelectorAll('.btn-enroll').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                window.location.href = 'enroll_redirect.php';
+            });
+        });
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('#galleryGrid [data-group]');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeLightbox = document.getElementById('closeLightbox');
+
+        filterButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                filterButtons.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                cards.forEach((card) => {
+                    const group = card.dataset.group;
+                    card.style.display = (filter === 'all' || filter === group) ? 'block' : 'none';
+                });
+            });
+        });
+
+        document.querySelectorAll('#galleryGrid img[data-full]').forEach((img) => {
+            img.addEventListener('click', () => {
+                lightboxImage.src = img.dataset.full;
+                lightbox.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeViewer() {
+            lightbox.classList.add('hidden');
+            lightboxImage.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        closeLightbox.addEventListener('click', closeViewer);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeViewer();
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+

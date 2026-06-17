@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reality Dream Institute | Enroll Now</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F4F7FB;
+            color: #1f2937;
+            overflow-x: hidden;
+            animation: fadeIn 0.9s ease-in;
+            background-image: radial-gradient(circle at top left, rgba(55, 125, 62, 0.08), transparent 26%), radial-gradient(circle at bottom right, rgba(107, 62, 147, 0.08), transparent 22%);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section {
+            padding: 3rem 0;
+            animation: fadeInUp 0.9s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        nav {
+            background: rgba(18, 24, 38, 0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .page-hero {
+            background: linear-gradient(180deg, rgba(55, 125, 62, 0.08), rgba(107, 62, 147, 0.06));
+            border: 1px solid rgba(107, 62, 147, 0.12);
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.06);
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 3vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            max-width: 44rem;
+            margin: 1rem auto 0;
+            color: #475569;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-top: 1.75rem;
+        }
+
+        .btn-secondary,
+        .btn-primary {
+            border-radius: 999px;
+            font-weight: 600;
+            padding: 0.95rem 1.8rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #377D3E, #6B3E93);
+            color: #fff;
+            box-shadow: 0 16px 34px rgba(55, 125, 62, 0.18);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 44px rgba(55, 125, 62, 0.22);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #1f2937;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        }
+
+        .enroll-wrapper .card {
+            border-radius: 28px;
+            background: #ffffff;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .embed-responsive {
+            position: relative;
+            width: 100%;
+            min-height: 620px;
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.08);
+        }
+
+        .embed-responsive iframe {
+            width: 100%;
+            min-height: 620px;
+            border: 0;
+            border-radius: 22px;
+        }
+
+        .form-note {
+            margin-top: 1.25rem;
+            font-size: 0.95rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .footer-small {
+            color: #cbd5e1;
+        }
+
+        #chat-toggle { position: fixed; right: 20px; bottom: 20px; width: 56px; height: 56px; border-radius: 999px; background: linear-gradient(135deg, #377D3E, #6B3E93); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,.25); cursor: pointer; z-index: 60; transition: transform 0.2s ease; }
+        #chat-toggle:hover { transform: translateY(-2px); }
+        #chatbot { position: fixed; right: 20px; bottom: 88px; width: 340px; max-width: calc(100vw - 24px); height: 470px; background: #fff; border-radius: 14px; box-shadow: 0 18px 40px rgba(0,0,0,.25); overflow: hidden; z-index: 60; display: none; border: 1px solid #e5e7eb; }
+        #chatbot.open { display: flex; flex-direction: column; }
+        #chat-header { background: linear-gradient(135deg, #121826, #2A2F3C); color: #fff; padding: 12px 14px; font-weight: 600; font-size: 14px; display: flex; justify-content: space-between; align-items: center; }
+        #close-chat { cursor: pointer; opacity: 0.9; font-size: 12px; }
+        #chat-body { flex: 1; padding: 12px; background: #f8fafc; overflow-y: auto; }
+        .chat-bot, .chat-user { margin-bottom: 10px; max-width: 85%; padding: 9px 11px; border-radius: 10px; line-height: 1.4; font-size: 13px; word-break: break-word; }
+        .chat-bot { background: #fff; border: 1px solid #e5e7eb; color: #1f2937; }
+        .chat-user { margin-left: auto; background: #6B3E93; color: #fff; }
+        #chat-input-area { padding: 10px; border-top: 1px solid #e5e7eb; background: #fff; display: flex; gap: 8px; }
+        #user-input { flex: 1; border: 1px solid #d1d5db; border-radius: 8px; padding: 9px 10px; outline: none; font-size: 13px; }
+        #user-input:focus { border-color: #6B3E93; box-shadow: 0 0 0 2px rgba(107, 62, 147, 0.15); }
+        #chat-send { border: 0; background: #377D3E; color: #fff; border-radius: 8px; padding: 0 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826;">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full flex items-center justify-center">
+                        <img src="./logo.jpg" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+                        <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
+                    </div>
+                </div>
+
+                <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
+                    <div class="relative group">
+                        <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="programs.html#cctv-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Installation</a>
+                            <a href="programs.html#solar-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Installation</a>
+                            <a href="programs.html#entrepreneurship" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Entrepreneurship</a>
+                            <a href="programs.html#front-desk-cashier" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Front Desk & Cashier</a>
+                            <a href="programs.html#computer-packages" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Computer Packages</a>
+                            <a href="programs.html#content-videography" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Content & Videography</a>
+                        </div>
+                    </div>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Gallery</a>
+                    <div class="relative group">
+                        <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Shop <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
+                            <a href="shop.html#cctv-cameras" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Cameras</a>
+                            <a href="shop.html#key-cutting" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Key Cuttings</a>
+                            <a href="shop.html#wifi-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">WiFi Installation</a>
+                            <a href="shop.html#solar-panels" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Panels</a>
+                            <a href="shop.html#electric-fence" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Electric Fence</a>
+                            <a href="shop.html#laser-sensors" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Laser Sensors</a>
+                        </div>
+                    </div>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+                    <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
+                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                            <i class="fas fa-file-pdf text-xs"></i>
+                            <span class="hidden sm:inline">Brochure</span>
+                        </button>
+                        <button onclick="window.location.href='enroll.html'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                            <i class="fas fa-user-graduate text-xs"></i>
+                            <span class="hidden sm:inline">Enroll</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
+                    <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.html#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.html#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.html#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.html#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.html#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.html#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
+                    <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    <button onclick="window.location.href='enroll.html'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Enroll Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16 md:pt-20">
+        <section class="section">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="page-hero mx-auto max-w-6xl">
+                    <div class="text-center">
+                        <span class="text-sm uppercase tracking-[0.3em] font-semibold text-green-700">Enrollment Center</span>
+                        <h1 class="hero-title font-bold mt-4">Enroll in a course with one simple form.</h1>
+                        <p class="hero-subtitle mx-auto mt-4">Choose your preferred program, fill in your details below, and our admissions team will contact you with enrollment confirmation and next steps within one business day.</p>
+                        <div class="hero-actions">
+                            <a href="programs.html" class="btn-primary">Browse Courses</a>
+                            <a href="contact.html" class="btn-secondary">Contact Admissions</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="enroll-wrapper mt-10 mx-auto max-w-6xl">
+                    <div class="card p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                            <div>
+                                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Enrollment Form</h2>
+                                <p class="text-slate-600 mt-2 max-w-2xl">Fill out the form below to secure your seat. We recommend using a desktop or tablet for the best experience.</p>
+                            </div>
+                            <div class="rounded-full bg-emerald-50 text-emerald-800 px-4 py-2 text-sm font-semibold inline-flex items-center">Fast response within 24 hours</div>
+                        </div>
+
+                        <div class="embed-responsive">
+                            <form id="enroll-form" class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <input id="enroll-name" name="name" type="text" placeholder="Full name" class="field-input" required>
+                                    <input id="enroll-phone" name="phone" type="tel" placeholder="Phone number" class="field-input" required>
+                                    <input id="enroll-email" name="email" type="email" placeholder="Email address" class="field-input" required>
+                                    <select id="enroll-course" name="course" class="field-input" required>
+                                        <option value="">Select course</option>
+                                        <option value="CCTV Installation">CCTV Installation</option>
+                                        <option value="Solar Installation">Solar Installation</option>
+                                        <option value="Entrepreneurship">Entrepreneurship</option>
+                                        <option value="Front Desk & Cashier">Front Desk & Cashier</option>
+                                        <option value="Computer Packages">Computer Packages</option>
+                                        <option value="Content & Videography">Content & Videography</option>
+                                    </select>
+                                </div>
+                                <div class="mt-4">
+                                    <textarea id="enroll-note" name="note" placeholder="Additional notes (optional)" class="textarea-input"></textarea>
+                                </div>
+                                <div class="mt-4 flex items-center justify-between">
+                                    <button type="submit" class="btn-primary">Submit Enrollment</button>
+                                    <small class="form-note">We'll contact you within 24 hours.</small>
+                                </div>
+                                <div id="enroll-success" class="mt-3 text-sm text-green-600 hidden">Enrollment draft opened in your email client.</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="pdfModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-screen flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50">
+                <h2 class="text-xl font-bold text-gray-800">Reality Dream Institute - Brochure</h2>
+                <button onclick="closePdfViewer()" class="text-gray-500 hover:text-gray-800 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex-1 overflow-auto">
+                <iframe id="pdfFrame" src="./Brochure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
+            </div>
+            <div class="flex justify-end items-center gap-3 p-4 border-t border-gray-200 bg-gray-50">
+                <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 text-white font-medium rounded-md transition" style="background-color:#6B3E93;">
+                    <i class="fas fa-print"></i>
+                    <span>Print</span>
+                </button>
+                <a href="./Brochure.pdf" download class="flex items-center gap-2 px-4 py-2 text-white font-medium rounded-md transition" style="background-color:#377D3E;">
+                    <i class="fas fa-download"></i>
+                    <span>Download</span>
+                </a>
+                <button onclick="closePdfViewer()" class="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md transition">
+                    <i class="fas fa-times"></i>
+                    <span>Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-6 md:py-8" style="background-color: #121826; color: white;">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+                <div>
+                    <div class="flex items-start mb-3 md:mb-4">
+                        <div class="flex-shrink-0 mr-2">
+                            <img src="./logo.svg" alt="Reality Dream Institute Logo" class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
+                        </div>
+                        <div>
+                            <h2 class="text-base md:text-lg font-bold leading-tight">Reality Dream Institute</h2>
+                            <p class="text-xs md:text-sm text-gray-300 mt-0.5">Business, Tech & Innovation Hub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm md:text-base mb-3 leading-relaxed">
+                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    </p>
+                    <div class="space-y-1">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base">Kilifi Town, Ar Rayan Complex</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone mr-2 mt-0.5 text-gray-400 text-xs flex-shrink-0"></i>
+                            <div class="text-sm md:text-base">
+                                <a href="tel:+254722729198" class="text-gray-300 hover:text-green-300 transition">0722 729 198</a>
+                                <span class="text-gray-500 mx-1">|</span>
+                                <a href="tel:+254743187154" class="text-gray-300 hover:text-green-300 transition">0743 187 154</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Quick Links</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="index.html#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
+                    <ul class="space-y-1 md:space-y-2">
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Contact & Social</h3>
+                    <p class="text-gray-300 text-sm md:text-base mb-2 md:mb-3 leading-relaxed">
+                        Follow us for updates and reach us quickly via call or WhatsApp.
+                    </p>
+                    <div class="space-y-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-gray-400 text-xs flex-shrink-0"></i>
+                            <p class="text-gray-300 text-sm md:text-base break-all">realitydreamacademy@gmail.com</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" aria-label="Facebook" class="w-9 h-9 rounded-full text-gray-200 flex items-center justify-center hover:text-white transition" style="background: linear-gradient(135deg,#1877f2,#0d5fcb);">
+                                <i class="fab fa-facebook-f text-sm"></i>
+                            </a>
+                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);">
+                                <i class="fab fa-instagram text-sm"></i>
+                            </a>
+                            <a href="https://www.twitter.com/realitydreamacademy" target="_blank" aria-label="X / Twitter" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition border border-white/30 shadow-sm" style="background: linear-gradient(135deg,#000000,#1f2937);">
+                                <span class="font-bold text-xs tracking-wide">X</span>
+                            </a>
+                            <a href="https://wa.me/254722729198" target="_blank" aria-label="WhatsApp" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#25D366,#128C7E);">
+                                <i class="fab fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
+
+                        <div class="pt-3 space-y-2">
+                            <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Quick Contact</p>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0722 729 198</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254722729198" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="bg-gray-800/60 rounded-lg p-2.5 border border-gray-700">
+                                <p class="text-xs text-gray-300 mb-2">0743 187 154</p>
+                                <div class="flex gap-2">
+                                    <a href="tel:+254743187154" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#6B3E93;">
+                                        <i class="fas fa-phone mr-1.5"></i>Call
+                                    </a>
+                                    <a href="https://wa.me/254743187154" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white transition w-full" style="background-color:#377D3E;">
+                                        <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-4 md:mt-6 pt-4 text-center">
+                <p class="text-gray-300 text-sm md:text-base">
+                    &copy; <span id="current-year">2024</span> Reality Dream Institute. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="chat-toggle" title="Chat with assistant">💬</div>
+    <div id="chatbot" aria-live="polite">
+        <div id="chat-header">
+            <span>Reality Dream Assistant</span>
+            <span id="close-chat">Close</span>
+        </div>
+        <div id="chat-body">
+            <div class="chat-bot">Hi! How can I help you today?</div>
+        </div>
+        <div id="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="chat-send" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        function openPdfViewer() {
+            const pdfModal = document.getElementById('pdfModal');
+            pdfModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePdfViewer() {
+            const pdfModal = document.getElementById('pdfModal');
+            pdfModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function printPdf() {
+            const pdfFrame = document.getElementById('pdfFrame');
+            pdfFrame.contentWindow.print();
+        }
+
+        document.getElementById('pdfModal')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePdfViewer();
+            }
+        });
+
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatbot = document.getElementById('chatbot');
+        const closeChat = document.getElementById('close-chat');
+        const chatBody = document.getElementById('chat-body');
+        const userInput = document.getElementById('user-input');
+
+        function appendChatMessage(text, type, isHtml) {
+            const bubble = document.createElement('div');
+            bubble.className = type === 'user' ? 'chat-user' : 'chat-bot';
+            if (isHtml) bubble.innerHTML = text; else bubble.textContent = text;
+            chatBody.appendChild(bubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getBotReply(message) {
+            const text = message.toLowerCase();
+            if (text.includes('emergency') || text.includes('urgent') || text.includes('help now') || text.includes('asap') || text.includes('staff')) {
+                return { html: "Emergency support:<br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.html' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>", isHtml: true };
+            }
+            if (text.includes('course')) return { html: 'We offer CCTV, Solar, Entrepreneurship, Front Desk, Computer Packages, and Content Creation.', isHtml: false };
+            if (text.includes('fee') || text.includes('price') || text.includes('cost')) return { html: 'Please check the Fees section on the home page for current course fees.', isHtml: false };
+            if (text.includes('contact') || text.includes('phone') || text.includes('email')) return { html: 'Call 0722 729 198 / 0743 187 154 or email realitydreamacademy@gmail.com.', isHtml: false };
+            if (text.includes('enroll') || text.includes('register')) return { html: 'Use the Enroll button in the menu to open the enrollment form.', isHtml: false };
+            return { html: "I can help with courses, fees, contact, and enrollment. If it's urgent, type: emergency.", isHtml: false };
+        }
+
+        function sendMessage() {
+            const message = (userInput.value || '').trim();
+            if (!message) return;
+            appendChatMessage(message, 'user');
+            userInput.value = '';
+            setTimeout(() => {
+                const reply = getBotReply(message);
+                appendChatMessage(reply.html, 'bot', reply.isHtml);
+            }, 300);
+        }
+
+        chatToggle?.addEventListener('click', function() {
+            chatbot.classList.toggle('open');
+            if (chatbot.classList.contains('open')) userInput?.focus();
+        });
+        closeChat?.addEventListener('click', function() { chatbot.classList.remove('open'); });
+        userInput?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') { e.preventDefault(); sendMessage(); }
+        });
+
+        // Enrollment form submission: open mail client with prefilled enrollment
+        document.getElementById('enroll-form')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('enroll-name').value.trim();
+            const phone = document.getElementById('enroll-phone').value.trim();
+            const email = document.getElementById('enroll-email').value.trim();
+            const course = document.getElementById('enroll-course').value;
+            const note = document.getElementById('enroll-note').value.trim();
+
+            if (!name || !phone || !email || !course) {
+                alert('Please fill all required fields.');
+                return;
+            }
+
+            const subject = encodeURIComponent(`Enrollment: ${course} - ${name}`);
+            const body = encodeURIComponent(`Name: ${name}%0APhone: ${phone}%0AEmail: ${email}%0ACourse: ${course}%0A%0ANotes:%0A${note}`);
+            const mailto = `mailto:realitydreamacademy@gmail.com?subject=${subject}&body=${body}`;
+            window.location.href = mailto;
+
+            const success = document.getElementById('enroll-success');
+            if (success) {
+                success.classList.remove('hidden');
+                setTimeout(() => success.classList.add('hidden'), 6000);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

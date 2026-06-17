@@ -40,16 +40,16 @@
         <div class="hidden lg:flex space-x-5 xl:space-x-6 items-center">
           <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
           <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
-          <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
+          <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Courses</a>
           <a href="blog.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-          <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
-          <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+          <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+          <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
           <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
             <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
               <i class="fas fa-file-pdf text-xs"></i>
               <span class="hidden sm:inline">Brochure</span>
             </button>
-            <button onclick="window.location.href='enroll_redirect.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+            <button onclick="window.location.href='enroll_redirect.html'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
               <i class="fas fa-user-graduate text-xs"></i>
               <span class="hidden sm:inline">Enroll</span>
             </button>
@@ -67,16 +67,16 @@
         <div class="flex flex-col space-y-3">
           <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
           <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
-          <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+          <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
           <a href="blog.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-          <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
-          <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+          <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+          <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
           <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
             <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
               <i class="fas fa-file-pdf"></i>
               <span>Download Brochure</span>
             </button>
-            <button onclick="window.location.href='enroll_redirect.php'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+            <button onclick="window.location.href='enroll_redirect.html'" class="btn-enroll-nav transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
               <i class="fas fa-user-graduate"></i>
               <span>Enroll Now</span>
             </button>
@@ -87,16 +87,54 @@
   </nav>
 
   <main class="wrap">
-    <section class="blog-section">
+    <section class="blog-hero">
       <div class="blog-header">
         <h2>Our Professional Courses</h2>
-        <p>Hands-on training designed to create real-world opportunities.</p>
+        <p>Hands-on training designed to create real-world opportunities with practical skills, local support, and business-ready outcomes.</p>
+      </div>
+      <div class="blog-hero-grid">
+        <div>
+          <p class="text-muted">Choose from career-focused programs that prepare you for employment, entrepreneurship, and service excellence.</p>
+          <div class="blog-hero-grid mt-8 gap-4">
+            <div class="stat-chip">
+              <strong>6</strong>
+              In-demand course tracks
+            </div>
+            <div class="stat-chip">
+              <strong>5</strong>
+              Months average course length
+            </div>
+            <div class="stat-chip">
+              <strong>95%</strong>
+              Learner success and placement rate
+            </div>
+          </div>
+          <div class="cta-actions mt-8">
+            <a href="programs.html" class="cta-btn cta-btn-primary">Browse Courses</a>
+            <a href="enroll_redirect.html" class="cta-btn cta-btn-secondary">Enroll Today</a>
+          </div>
+        </div>
+        <div class="hero-preview">
+          <div class="preview-card">
+            <img src="Assets/images/optimized/image-16.jpg" alt="Training workshop" loading="lazy">
+          </div>
+          <div class="preview-card">
+            <img src="Assets/images/optimized/entre-1.jpg" alt="Entrepreneurship training" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-section">
+      <div class="blog-header">
+        <h2>Course Details</h2>
+        <p>Each program is designed to give you the technical experience and confidence employers and clients value.</p>
       </div>
 
       <div class="blog-grid">
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/image (16).jpg" alt="CCTV Installation Training" loading="lazy">
+            <img src="Assets/images/optimized/image-16.jpg" alt="CCTV Installation Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>CCTV Installation <span class="duration">(7 Months)</span></h3>
@@ -120,7 +158,7 @@
 
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/SETUP.jpg" alt="Solar Installation Training" loading="lazy">
+            <img src="Assets/images/optimized/setup-1.jpg" alt="Solar Installation Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>Solar Installation <span class="duration">(7 Months)</span></h3>
@@ -144,7 +182,7 @@
 
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/Entre 1.jpg" alt="Entrepreneurship Training" loading="lazy">
+            <img src="Assets/images/optimized/entre-1.jpg" alt="Entrepreneurship Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>Entrepreneurship <span class="duration">(3 Months)</span></h3>
@@ -168,7 +206,7 @@
 
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/SITE.jpg" alt="Front Desk Training" loading="lazy">
+            <img src="Assets/images/optimized/site-1.jpg" alt="Front Desk Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>Front Desk & Cashier <span class="duration">(3 Months)</span></h3>
@@ -192,7 +230,7 @@
 
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/computer training.jpg" alt="Computer Packages Training" loading="lazy">
+            <img src="Assets/images/optimized/computer-training.jpg" alt="Computer Packages Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>Computer Packages <span class="duration">(3 Months)</span></h3>
@@ -216,7 +254,7 @@
 
         <article class="blog-card">
           <div class="image-wrap">
-            <img src="Assets/images/content and video.jpg" alt="Content Creation Training" loading="lazy">
+            <img src="Assets/images/optimized/content-and-video.jpg" alt="Content Creation Training" loading="lazy">
           </div>
           <div class="blog-content">
             <h3>Content Creation & Videography</h3>
@@ -245,206 +283,206 @@
         <h2>Training/Site Moments Gallery</h2>
         <p>More photos from <strong>REALITY DREAM INSTITUTE</strong>.</p>
       </div>
-      <div class="rounded-[28px] p-4 md:p-6 border border-slate-200" style="background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);">
+        <div class="rounded-[28px] p-4 md:p-6 border border-slate-200" style="background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); box-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/entre meeting.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/entre-meeting.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/entree.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/entree.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/Entre 1.jpg" alt="Electric fence" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/entre-1.jpg" alt="Electric fence" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/Entre 2.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/entre-2.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/5.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/5.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/6.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/6.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/7.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/7.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/8.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/8.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/9.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/9.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/10.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/10.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/11.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/11.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/12.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/12.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/13.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/13.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/14.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/14.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/15.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/15.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/16.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/16.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/17.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/17.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/18.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/18.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/19.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/19.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/20.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/20.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/21.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/21.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/22.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/22.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/23.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/23.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/24.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/24.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/25.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/25.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/26.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/26.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/27.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/27.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/28.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/28.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/29.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/29.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/30.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/30.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/31.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/31.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/32.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/32.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/33.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/33.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/34.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/34.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/35.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/35.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/36.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/36.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/37.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/37.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/38.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/38.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/39.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/39.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/40.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/40.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/41.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/41.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/42.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/42.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/43.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/43.jpg" alt="Computer training session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/44.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/44.jpg" alt="Solar installation practice" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/45.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/45.jpg" alt="Solar panels setup" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/4.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/4.jpg" alt="System setup class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/47.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/47.jpg" alt="Field practical session" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/48.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/48.jpg" alt="Team training group" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/49.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/49.jpg" alt="Content creation class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
           <figure class="group relative overflow-hidden rounded-2xl border border-white/70 bg-slate-100 shadow-[0_14px_30px_rgba(15,23,42,0.12)]">
-            <img src="Assets/images/50.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
+            <img src="Assets/images/optimized/50.jpg" alt="Entrepreneurship class" loading="lazy" class="w-full h-40 md:h-44 object-cover transition duration-500 group-hover:scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent"></div>
           </figure>
         </div>
@@ -488,19 +526,19 @@
           <ul class="space-y-1 md:space-y-2">
             <li><a href="index.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
             <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
-            <li><a href="contact.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
           </ul>
         </div>
         <div>
           <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
           <ul class="space-y-1 md:space-y-2">
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
-            <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+            <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
           </ul>
         </div>
         <div>
@@ -581,14 +619,14 @@
         </button>
       </div>
       <div class="flex-1 overflow-auto">
-        <iframe id="pdfFrame" src="./Bronchure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
+        <iframe id="pdfFrame" src="./Brochure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
       </div>
       <div class="flex justify-end items-center gap-3 p-4 border-t border-gray-200 bg-gray-50">
         <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition">
           <i class="fas fa-print"></i>
           <span>Print</span>
         </button>
-        <a href="./Bronchure.pdf" download class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
+        <a href="./Brochure.pdf" download class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
           <i class="fas fa-download"></i>
           <span>Download</span>
         </a>
@@ -672,7 +710,7 @@
     function getBotReply(message) {
       const text = message.toLowerCase();
       if (text.includes('emergency') || text.includes('urgent') || text.includes('help now') || text.includes('asap') || text.includes('staff')) {
-        return { html: "Emergency support:<br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.php' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>", isHtml: true };
+        return { html: "Emergency support:<br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.html' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>", isHtml: true };
       }
       if (text.includes('course')) return { html: 'We offer CCTV, Solar, Entrepreneurship, Front Desk, Computer Packages, and Content Creation.', isHtml: false };
       if (text.includes('fee') || text.includes('price') || text.includes('cost')) return { html: 'Please check the Fees section on the home page for current course fees.', isHtml: false };

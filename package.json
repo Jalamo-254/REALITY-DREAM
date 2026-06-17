@@ -1,0 +1,20 @@
+{
+  "name": "reality-dream-static",
+  "version": "1.0.0",
+  "description": "Static site assets and helper scripts for Reality Dream Institute",
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.js",
+    "build:css": "tailwindcss -i Assets/css/tailwind-input.css -o Assets/css/tailwind.css --minify --content \"./**/*.html\" \"./**/*.js\"",
+    "normalize-images": "node scripts/normalize-image-names.js"
+  },
+  "devDependencies": {
+    "imagemin": "^7.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^5.0.1",
+    "imagemin-svgo": "^12.0.0",
+    "imagemin-webp": "^4.1.0",
+    "tailwindcss": "^3.5.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21"
+  }
+}

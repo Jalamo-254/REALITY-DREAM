@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reality Dream Institute - Skills. Progress. Prosperity!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Assets/css/style.css">
+    <link rel="preload" as="image" href="Assets/images/optimized/entre-2.webp" type="image/webp">
     <style>
+        /* Existing styles */
         #chat-toggle {
             position: fixed;
             right: 20px;
@@ -43,8 +46,8 @@
         }
         #chatbot.open { display: flex; flex-direction: column; }
         #chat-header {
-            background: linear-gradient(135deg, #121826, #2A2F3C);
-            color: #fff;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            color: #374151;
             padding: 12px 14px;
             font-weight: 600;
             font-size: 14px;
@@ -79,7 +82,7 @@
         }
         .chat-user {
             margin-left: auto;
-            background: #6B3E93;
+            background: #10b981;
             color: #fff;
         }
         #chat-input-area {
@@ -98,12 +101,12 @@
             font-size: 13px;
         }
         #user-input:focus {
-            border-color: #6B3E93;
-            box-shadow: 0 0 0 2px rgba(107, 62, 147, 0.15);
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.15);
         }
         #chat-send {
             border: 0;
-            background: #377D3E;
+            background: #059669;
             color: #fff;
             border-radius: 8px;
             padding: 0 12px;
@@ -111,22 +114,391 @@
             font-weight: 600;
             cursor: pointer;
         }
+
+        /* New outstanding styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F9FA;
+            color: #333333;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #dbeafe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative hero graphic */
+        .hero-graphic {
+            position: absolute;
+            right: 2rem;
+            top: 12%;
+            width: 260px;
+            height: 260px;
+            pointer-events: none;
+            opacity: 0.14;
+            transform: rotate(-8deg);
+            z-index: 1;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle at center, rgba(59,130,246,0.16), transparent 60%);
+            filter: blur(32px);
+            z-index: 1;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -5%;
+            right: -5%;
+            width: 360px;
+            height: 360px;
+            background: radial-gradient(circle at center, rgba(16,185,129,0.16), transparent 55%);
+            filter: blur(32px);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .hero-image-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-image-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 70px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero-image-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 2;
+            object-fit: cover;
+            display: block;
+        }
+
+        .feature-pill {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 22px;
+            padding: 1.2rem 1.4rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-pill:hover {
+            transform: translateY(-4px);
+            border-color: rgba(34, 197, 94, 0.35);
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 2.5vw, 2.6rem);
+            line-height: 1.1;
+            margin-bottom: 0.9rem;
+        }
+
+        .text-muted {
+            color: #475569;
+        }
+
+        .hero-button-group .btn-primary {
+            min-width: 180px;
+            padding: 14px 36px;
+            font-size: 1.05rem;
+            box-shadow: 0 18px 40px rgba(16,185,129,0.12);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid rgba(107,62,147,0.12);
+            color: #6B3E93;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
+        .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(107,62,147,0.12); }
+
+        .nav-glass {
+            background: rgba(15, 23, 42, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+        }
+        /* Ensure nav links have high contrast on dark glass */
+        .nav-glass a { color: #f8fafc; }
+        .nav-glass a:hover { color: #9be7c9; }
+        #mobile-menu a { color: #f8fafc; }
+
+        .announcement-nav {
+            background: #ffffff; /* use solid white for clear contrast */
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            border-radius: 1.5rem;
+            color: #0f172a;
+            margin: 0 auto;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.04);
+        }
+
+        .announcement-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+            padding: 1.5rem;
+        }
+
+        .announcement-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 1.25rem;
+            border-radius: 1.25rem;
+            background: #ffffff;
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            font-size: 0.92rem;
+            line-height: 1.4;
+            text-decoration: none;
+            color: #0f172a;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .announcement-item:hover {
+            transform: translateY(-4px);
+            background: #fbfdff;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .announcement-image {
+            width: 100%;
+            height: 120px;
+            border-radius: 0.9rem;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .announcement-item div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .announcement-item span:last-child {
+            color: #475569;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .announcement-tag {
+            background: #065f46;
+            color: #ffffff;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            align-self: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .announcement-list {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+            .announcement-item {
+                padding: 1rem;
+            }
+            .announcement-image {
+                height: 100px;
+            }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .section {
+            padding: 5rem 0;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #047857, #065f46);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3);
+        }
+
+        .testimonial {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer heading contrast improvements */
+        footer h2, footer h3 { color: #ffffff; }
+
+        .stats-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #6B3E93;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mobile / small-screen improvements */
+        @media (max-width: 640px) {
+            .hero-section {
+                min-height: auto;
+                padding: 3rem 1rem;
+            }
+
+            .hero-content {
+                padding: 0;
+            }
+
+            .hero-image-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .hero-image-card img {
+                width: 100%;
+                height: 160px;
+                aspect-ratio: auto;
+                object-fit: cover;
+            }
+
+            .hero-button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            /* Make the assistant compact on mobile */
+            #chatbot {
+                right: 12px;
+                bottom: 80px;
+                width: 92vw;
+                max-width: 480px;
+                height: 60vh;
+                max-height: calc(100vh - 120px);
+            }
+
+            #chat-toggle {
+                right: 14px;
+                bottom: 14px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .announcement-list {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 2.5rem 0;
+            }
+        }
     </style>
 </head>
 
-<body style="font-family: 'Poppins', sans-serif; background-color: #F8F9FA; color: #333333; overflow-x: hidden;">
+<body>
+    <a class="skip-link" href="#home">Skip to content</a>
     
     <!-- Navigation - Simple transparent design -->
-    <nav class="sticky top-0 z-50 bg-transparent" style="background-color: #121826;">
-        <div class="container mx-auto px-4 py-2">
+    <nav class="sticky top-0 z-50 nav-glass">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex flex-wrap justify-between items-center">
                 <!-- logo image --> 
-                <div class="flex items-center space-x itemsc-2">
-                    <div class="w-8 h-8 rounded-full flex items-center justify-center">
-                        <img src="Assets/images/LOGOO.png" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
-                    </div>
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="nav-logo" aria-label="Reality Dream Institute home">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center">
+                            <img src="Assets/images/optimized/logoo-1.png" alt="Reality Dream Institute Logo" class="w-6 h-6 rounded-full object-cover">
+                        </div>
+                    </a>
                     <div>
-                        <h1 class="text-md md:text-lg font-bold" style="background: linear-gradient(90deg, #377D3E, #6B3E93, #E38822); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;">Reality Dream Institute</h1>
+                        <h1 class="text-md md:text-lg font-bold text-gray-800">Reality Dream Institute</h1>
                         <p class="text-xs text-gray-300 mobile-hidden">Business, Tech & Innovation Hub</p>
                     </div>
                 </div>
@@ -136,14 +508,14 @@
                     <a href="#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">About</a>
                     <div class="relative group">
-                        <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
+                        <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-1.5 text-[10px]"></i></a>
                         <div class="absolute left-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700 rounded-lg shadow-xl p-2 hidden group-hover:block group-focus-within:block z-50">
-                            <a href="programs.php#cctv-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Installation</a>
-                            <a href="programs.php#solar-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Installation</a>
-                            <a href="programs.php#entrepreneurship" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Entrepreneurship</a>
-                            <a href="programs.php#front-desk-cashier" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Front Desk & Cashier</a>
-                            <a href="programs.php#computer-packages" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Computer Packages</a>
-                            <a href="programs.php#content-videography" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Content & Videography</a>
+                            <a href="programs.html#cctv-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">CCTV Installation</a>
+                            <a href="programs.html#solar-installation" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Solar Installation</a>
+                            <a href="programs.html#entrepreneurship" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Entrepreneurship</a>
+                            <a href="programs.html#front-desk-cashier" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Front Desk & Cashier</a>
+                            <a href="programs.html#computer-packages" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Computer Packages</a>
+                            <a href="programs.html#content-videography" class="block px-3 py-2 rounded text-xs text-gray-200 hover:text-green-300 hover:bg-slate-800">Content & Videography</a>
                         </div>
                     </div>
                     <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Gallery</a>
@@ -159,19 +531,19 @@
                         </div>
                     </div>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
-                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Fees</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm xl:text-sm">Contact</a>
                     
                     <!-- Buttons Container inside Nav - Smaller buttons -->
                     <div class="flex items-center space-x-1 md:space-x-2 ml-2 md:ml-3 pl-2 md:pl-3 border-l border-gray-700">
                         <!-- Download Brochure Button -->
-                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                        <button type="button" onclick="openPdfViewer()" class="btn-download transition-all bg-white hover:bg-green-50 text-green-800 border border-green-600 font-medium py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #ffffff; color: #065f46; border-color: #065f46; transition: all 0.3s ease;">
                             <i class="fas fa-file-pdf text-xs"></i>
                             <span class="hidden sm:inline">Brochure</span>
                         </button>
                         
                         <!-- Enroll Now Button -->
-                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <button type="button" class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-1.5 px-2 md:px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-user-graduate text-xs"></i>
                             <span class="hidden sm:inline">Enroll</span>
                         </button>
@@ -180,24 +552,24 @@
                 
                 <!-- Mobile menu button -->
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <button type="button" id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open mobile menu" class="text-gray-300 focus:outline-none">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
             </div>
             
             <!-- Mobile menu -->
-            <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2">
+                <div id="mobile-menu" class="lg:hidden hidden mt-3 pb-2" role="menu" aria-label="Mobile navigation">
                 <div class="flex flex-col space-y-3">
                     <a href="#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
-                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
-                    <a href="programs.php#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
-                    <a href="programs.php#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
-                    <a href="programs.php#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
-                    <a href="programs.php#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
-                    <a href="programs.php#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
-                    <a href="programs.php#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.html#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.html#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.html#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.html#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.html#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.html#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
                     <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
                     <a href="shop.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
                     <a href="shop.html#cctv-cameras" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Cameras</a>
@@ -207,17 +579,17 @@
                     <a href="shop.html#electric-fence" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Electric Fence</a>
                     <a href="shop.html#laser-sensors" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Laser Sensors</a>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
-                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Fees</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
                     
                     <!-- Mobile Buttons -->
                     <div class="nav-buttons flex flex-col space-y-2 pt-3 border-t border-gray-700">
-                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-tint-green hover:bg-green-100 text-green border border-green-200 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #f0f8f0; color: #377D3E; border-color: #377D3E; transition: all 0.3s ease;">
+                        <button type="button" onclick="openPdfViewer()" class="btn-download transition-all bg-white hover:bg-green-50 text-green-800 border border-green-600 font-medium py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #ffffff; color: #065f46; border-color: #065f46; transition: all 0.3s ease;">
                             <i class="fas fa-file-pdf"></i>
                             <span>Download Brochure</span>
                         </button>
                         
-                        <button class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
+                        <button type="button" class="btn-enroll transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93; transition: all 0.3s ease;">
                             <i class="fas fa-user-graduate"></i>
                             <span>Enroll Now</span>
                         </button>
@@ -227,105 +599,276 @@
         </div>
     </nav>
 
-    <!-- Hero Section  -->
-    <section id="home" class="py-10 md:py-16 lg:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #121826 0%, #2A2F3C 100%); color: white;">
-        <!-- Background image container -->
-        <div class="absolute inset-0 w-full h-full">
-            <img 
-                src="./daniel-thomas-HA-0i0E7sq4-unsplash.jpg" 
-                alt="picture of lady having graduated and happy"
-                class="w-full h-full object-cover opacity-70"
-            >
-            <!-- Dark overlay for better text visibility -->
-            <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+    <section class="py-12 md:py-14 bg-gradient-to-b from-transparent to-slate-50/20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="uppercase tracking-wider text-xs font-semibold mb-2 text-green-600">Latest Updates</p>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Announcements, Offers & Intakes</h2>
+                <p class="text-muted text-sm md:text-base">Stay informed about new training intakes, special offers, and important announcements from Reality Dream Institute.</p>
+            </div>
+            
+            <nav class="announcement-nav" id="announcementNav" aria-label="Latest updates and offers"></nav>
+            
+                <div class="text-center mt-8">
+                <a id="announcementAction" href="programs.html#intakes" class="inline-flex items-center justify-center px-7 py-3 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors">
+                    <i class="fas fa-calendar-check mr-2"></i>
+                    View intake details
+                </a>
+            </div>
         </div>
-        
-        <!-- Content container -->
-        <div class="container mx-auto px-4 md:px-6 relative z-10">
-            <div class="grid grid-cols-1 gap-8 items-center">
-                <!-- Left Content -->
-                <div class="lg:w-full">
-                    <!-- Badge -->
-                    <div class="inline-flex items-center px-3 py-1 md:px-3 md:py-1.5 rounded-full bg-tint-green text-green font-medium mb-3 md:mb-4 text-xs md:text-sm" style="background-color: #f0f8f0; color: #377D3E;">
-                        <i class="fas fa-rocket mr-2 text-xs"></i>
-                        <span class="bg-white rounded opacity-30 p-0.5">Skills. Progress. Prosperity!</span>
+    </section>
+
+    <!-- Hero Section  -->
+    <section id="home" class="hero-section">
+        <div class="container mx-auto px-4 md:px-6 hero-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div class="text-gray-800">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-800 font-medium mb-6 text-sm floating-animation shadow-sm">
+                        <i class="fas fa-rocket mr-2"></i>
+                        <span>Skills. Progress. Prosperity!</span>
                     </div>
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 hero-title">
-                        <span class="block">REALITY DREAM</span>
-                        <span class="block">INSTITUTE</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        <span style="background:linear-gradient(90deg,#065f46,#6B3E93);-webkit-background-clip:text;background-clip:text;color:transparent;">REALITY DREAM</span> INSTITUTE
                     </h1>
-                    <p class="text-base md:text-lg text-gray-200 mb-6 md:mb-8 max-w-2xl">
-                        Empowering learners with practical technical skills for employment, entrepreneurship, and community transformation.
+                    <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-3xl leading-relaxed">
+                        Practical technical training for CCTV, solar, entrepreneurship, digital skills, and service careers. Learn with hands-on projects, career support, and community-focused guidance.
                     </p>
-                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                        <a href="programs.php" class="transition-all bg-purple hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="background-color: #6B3E93; transition: all 0.3s ease;">
-                            <i class="fas fa-user-graduate text-sm"></i>
-                            <span>Explore Courses</span>
+                    <div class="flex flex-col sm:flex-row gap-4 hero-button-group">
+                        <a href="programs.html" class="btn-primary text-lg shadow-lg hover:shadow-xl transition-all duration-300" aria-label="Explore courses">
+                            <i class="fas fa-user-graduate mr-2"></i>
+                            Explore Courses
                         </a>
-                        <button onclick="openPdfViewer()" class="btn-download transition-all bg-white hover:bg-gray-100 text-green border border-green-200 font-semibold py-3 px-6 rounded-md flex items-center justify-center space-x-2 text-sm md:text-base w-full sm:w-auto" style="color: #377D3E; border-color: #377D3E; transition: all 0.3s ease; cursor: pointer;">
-                            <i class="fas fa-file-pdf text-sm"></i>
-                            <span>Download Brochure</span>
+                        <button type="button" onclick="openPdfViewer()" class="btn-secondary" style="cursor: pointer;" aria-label="Download brochure">
+                            <i class="fas fa-file-pdf mr-2"></i>
+                            Download Brochure
                         </button>
+                    </div>
+                    <!-- subtle decorative svg -->
+                    <svg class="hero-graphic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#4ade80" />
+                                <stop offset="100%" stop-color="#6B3E93" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="100" cy="100" r="90" fill="url(#g1)" />
+                    </svg>
+                    <div class="grid grid-cols-2 gap-3 mt-10 text-sm text-gray-600">
+                        <div class="rounded-2xl bg-white/90 p-4 shadow-sm">
+                            <strong class="block text-gray-900">Flexible classes</strong>
+                            Evening and weekend options for working learners.
+                        </div>
+                        <div class="rounded-2xl bg-white/90 p-4 shadow-sm">
+                            <strong class="block text-gray-900">Practical labs</strong>
+                            Real equipment, real installations, real confidence.
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image-grid">
+                        <div class="hero-image-card overflow-hidden">
+                            <picture>
+                                <source type="image/webp" srcset="Assets/images/optimized/entre-2.webp">
+                                <img src="Assets/images/optimized/entre-2.jpg" alt="Training session" loading="lazy" width="900" height="600">
+                            </picture>
+                        </div>
+                    <div class="hero-image-card overflow-hidden">
+                            <picture>
+                                <source type="image/webp" srcset="Assets/images/optimized/student-5.webp">
+                                <img src="Assets/images/optimized/student-5.jpg" alt="Students learning" loading="lazy" width="900" height="600">
+                            </picture>
+                    </div>
+                    <div class="hero-image-card overflow-hidden">
+                            <picture>
+                                <source type="image/webp" srcset="Assets/images/optimized/shop-1.webp">
+                                <img src="Assets/images/optimized/shop-1.jpeg" alt="Workshop practice" loading="lazy" width="900" height="600">
+                            </picture>
+                    </div>
+                    <div class="hero-image-card overflow-hidden">
+                            <picture>
+                                <source type="image/webp" srcset="Assets/images/optimized/lazer-1.webp">
+                                <img src="Assets/images/optimized/lazer-1.jpg" alt="Hands-on training" loading="lazy" width="900" height="600">
+                            </picture>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="py-12 md:py-16" style="background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%); color: white;">
+    <section class="py-12 md:py-16 bg-gray-50">
         <div class="container mx-auto px-4 md:px-6">
             <div class="text-center max-w-3xl mx-auto mb-8">
-                <p class="uppercase tracking-wider text-xs font-semibold mb-2" style="color:#86efac;">Your Next Step</p>
-                <h2 class="text-2xl md:text-4xl font-bold mb-3">Simple Journey, Dedicated Pages</h2>
-                <p class="text-gray-300 text-sm md:text-base">Home now focuses on overview and action. Detailed forms and location details are available on dedicated pages.</p>
+                <p class="uppercase tracking-wider text-xs font-semibold mb-2 text-green-600">Your Path Starts Here</p>
+                <h2 class="section-title font-bold text-gray-900">Fast access to enrollment, support, and our campus experience</h2>
+                <p class="text-muted text-sm md:text-base">Choose the next step that suits you best: apply, contact us, or explore our learning gallery. Everything is exposed with clear actions on the homepage.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
-                <a href="enroll_redirect.php" class="rounded-xl p-5 md:p-6 border border-white/10 hover:border-green-300/40 transition" style="background: rgba(255,255,255,0.04);">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style="background: rgba(55,125,62,.2); color:#86efac;">
+                <a href="enroll_redirect.html" class="feature-pill">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-emerald-100 text-emerald-700">
                         <i class="fas fa-user-graduate"></i>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">Enroll Now</h3>
-                    <p class="text-gray-300 text-sm">Apply through the full enrollment form and upload supporting documents.</p>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Enroll Now</h3>
+                    <p class="text-muted text-sm">Start your application quickly and secure your seat in the next intake.</p>
                 </a>
 
-                <a href="contact.php" class="rounded-xl p-5 md:p-6 border border-white/10 hover:border-purple-300/40 transition" style="background: rgba(255,255,255,0.04);">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style="background: rgba(107,62,147,.2); color:#d8b4fe;">
+                <a href="contact.html" class="feature-pill">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-violet-100 text-violet-700">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">Contact & Map</h3>
-                    <p class="text-gray-300 text-sm">Send a message, view our business hours, and access the full location map.</p>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-900">Contact & Map</h3>
+                    <p class="text-muted text-sm">Reach out for guidance, visit our campus, or get help with course selection.</p>
                 </a>
 
-                <a href="gallery.html" class="rounded-xl p-5 md:p-6 border border-white/10 hover:border-amber-300/40 transition" style="background: rgba(255,255,255,0.04);">
-                    <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style="background: rgba(227,136,34,.2); color:#fcd34d;">
+                <a href="gallery.html" class="feature-pill">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center mb-4 bg-amber-100 text-amber-700">
                         <i class="fas fa-images"></i>
                     </div>
-                    <h3 class="text-lg font-bold mb-2">View Gallery</h3>
-                    <p class="text-gray-300 text-sm">See students and trainers in practical sessions, workshops, and field activities.</p>
+                    <h3 class="text-lg font-semibold mb-2 text-gray-900">View Gallery</h3>
+                    <p class="text-muted text-sm">Browse real progress stories from learners, instructors, and hands-on classes.</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="py-14 md:py-16" style="background: linear-gradient(135deg, #111827, #1f2937);">
+    <section class="py-14 md:py-16" style="background: linear-gradient(135deg, #fefefe 0%, #f8fafc 100%);">
         <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-gray-700" style="box-shadow: 0 20px 40px rgba(0,0,0,.25);">
+            <div class="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-gray-200 shadow-lg" style="background: #ffffff;">
                 <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="p-8 md:p-10 text-white">
-                        <p class="uppercase tracking-wider text-xs font-semibold mb-2" style="color:#86efac;">Visual Story</p>
-                        <h3 class="text-2xl md:text-3xl font-extrabold mb-3">Students & Trainers Gallery</h3>
-                        <p class="text-gray-300 mb-6">Explore real training sessions, student projects, and trainer-led practical classes at Reality Dream Institute.</p>
-                        <a href="gallery.html" class="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white" style="background: linear-gradient(90deg, #377D3E, #6B3E93);">
+                    <div class="p-8 md:p-10 text-gray-800">
+                        <p class="uppercase tracking-wider text-xs font-semibold mb-2 text-green-600">Visual Story</p>
+                        <h3 class="text-2xl md:text-3xl font-extrabold mb-3 text-gray-900">Students & Trainers Gallery</h3>
+                        <p class="text-gray-600 mb-6">Explore real training sessions, student projects, and trainer-led practical classes at Reality Dream Institute.</p>
+                        <a href="gallery.html" class="inline-flex items-center px-5 py-2.5 rounded-lg font-semibold text-white bg-green-600 hover:bg-green-700 transition-colors">
                             <i class="fas fa-images mr-2"></i>
                             View Full Gallery
                         </a>
                     </div>
                     <div class="grid grid-cols-2 gap-2 p-2 bg-black/20">
-                        <img src="Assets/images/Entre 2.jpg" alt="Reality Dream team" class="w-full h-32 md:h-40 object-cover rounded-lg">
-                        <img src="Assets/images/Student 5.jpg" alt="Solar training class" class="w-full h-32 md:h-40 object-cover rounded-lg">
-                        <img src="Assets/images/shop 1.jpeg" alt="Content creation practical" class="w-full h-32 md:h-40 object-cover rounded-lg">
-                        <img src="Assets/images/LAZER.jpg" alt="Field work session" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                        <picture>
+                            <source type="image/webp" srcset="Assets/images/optimized/entre-2.webp">
+                            <img src="Assets/images/optimized/entre-2.jpg" alt="Reality Dream team" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                        </picture>
+                        <picture>
+                            <source type="image/webp" srcset="Assets/images/optimized/student-5.webp">
+                            <img src="Assets/images/optimized/student-5.jpg" alt="Solar training class" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                        </picture>
+                        <picture>
+                            <source type="image/webp" srcset="Assets/images/optimized/shop-1.webp">
+                            <img src="Assets/images/optimized/shop-1.jpeg" alt="Content creation practical" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                        </picture>
+                        <picture>
+                            <source type="image/webp" srcset="Assets/images/optimized/lazer-1.webp">
+                            <img src="Assets/images/optimized/lazer-1.jpg" alt="Field work session" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-lg">
+                        </picture>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Our Students Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Hear from our graduates who have transformed their careers through our practical training programs.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            J
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">John Mwangi</h4>
+                            <p class="text-gray-600 text-sm">CCTV Installation Graduate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The hands-on training at Reality Dream Institute gave me the skills I needed to start my own security installation business. The instructors are knowledgeable and supportive."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            M
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Mary Wanjiku</h4>
+                            <p class="text-gray-600 text-sm">Entrepreneurship Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"This program opened my eyes to business opportunities I never knew existed. Now I'm running a successful solar installation company thanks to the practical skills I learned."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-400 to-green-500 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4">
+                            D
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">David Kiprop</h4>
+                            <p class="text-gray-600 text-sm">Computer Packages Graduate</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The computer skills I gained here helped me land a great job in IT. The training was comprehensive and the support from staff was excellent throughout my learning journey."</p>
+                    <div class="flex text-yellow-400 mt-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-16 bg-gradient-to-r from-green-50 to-blue-50 text-gray-800 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Impact in Numbers</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Transforming lives through quality education and practical skills training.</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-green-600 text-xl"></i>
+                    </div>
+                    <div class="stats-number text-3xl md:text-4xl font-bold text-green-600 mb-2">500+</div>
+                    <p class="text-gray-700 font-medium">Students Trained</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-briefcase text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="stats-number text-3xl md:text-4xl font-bold text-blue-600 mb-2">95%</div>
+                    <p class="text-gray-700 font-medium">Employment Rate</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-book-open text-purple-600 text-xl"></i>
+                    </div>
+                    <div class="stats-number text-3xl md:text-4xl font-bold text-purple-600 mb-2">6</div>
+                    <p class="text-gray-700 font-medium">Courses Offered</p>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-calendar-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <div class="stats-number text-3xl md:text-4xl font-bold text-indigo-600 mb-2">5</div>
+                    <p class="text-gray-700 font-medium">Years Experience</p>
                 </div>
             </div>
         </div>
@@ -340,8 +883,8 @@
                     <div class="flex items-start mb-3 md:mb-4">
                         <!-- Fixed SVG Logo with proper size -->
                         <div class="flex-shrink-0 mr-2">
-                            <img src="./logo.svg" alt="Reality Dream Institute Logo" 
-                                 class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
+                            <img src="./logo.png" alt="Reality Dream Institute Logo" loading="lazy"
+                                     class="w-8 h-8 md:w-10 md:h-10 rounded-lg">
                         </div>
                         <div>
                             <h2 class="text-base md:text-lg font-bold leading-tight">Reality Dream Institute</h2>
@@ -375,10 +918,10 @@
                     <ul class="space-y-1 md:space-y-2">
                         <li><a href="#home" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Home</a></li>
                         <li><a href="about.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">About Us</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Courses</a></li>
                         <li><a href="shop.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Shop</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
-                        <li><a href="contact.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Course Fees</a></li>
+                        <li><a href="contact.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Contact</a></li>
                     </ul>
                 </div>
                 
@@ -386,11 +929,11 @@
                 <div>
                     <h3 class="text-base md:text-lg font-bold mb-2 md:mb-4">Popular Courses</h3>
                     <ul class="space-y-1 md:space-y-2">
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
-                        <li><a href="programs.php" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">CCTV Installation Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Solar Installation Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Entrepreneurship Training</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Computer Packages</a></li>
+                        <li><a href="programs.html" class="text-gray-300 hover:text-green-300 transition text-sm md:text-base">Content Creation & Videography</a></li>
                     </ul>
                 </div>
                 
@@ -403,9 +946,9 @@
                     
                     <!-- Newsletter Form -->
                     <div class="flex mb-3 md:mb-4">
-                        <input type="email" placeholder="Your email" 
+                        <input type="email" placeholder="Your email" aria-label="Email address" 
                                class="flex-grow p-2 rounded-l-md text-gray-800 focus:outline-none text-sm md:text-base w-full">
-                        <button class="px-3 md:px-4 rounded-r-md font-medium text-xs md:text-sm whitespace-nowrap" style="background-color: #377D3E;">
+                        <button aria-label="Subscribe" class="px-3 md:px-4 rounded-r-md font-medium text-xs md:text-sm whitespace-nowrap" style="background-color: #377D3E; color: #ffffff;">
                             Subscribe
                         </button>
                     </div>
@@ -419,16 +962,16 @@
                         
                         <!-- Social Media Icons -->
                         <div class="flex flex-wrap gap-2 pt-2">
-                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" aria-label="Facebook" class="w-9 h-9 rounded-full text-gray-200 flex items-center justify-center hover:text-white transition" style="background: linear-gradient(135deg,#1877f2,#0d5fcb);">
+                            <a href="https://www.facebook.com/realitydreamacademy" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full text-gray-200 flex items-center justify-center hover:text-white transition" style="background: linear-gradient(135deg,#1877f2,#0d5fcb);">
                                 <i class="fab fa-facebook-f text-sm"></i>
                             </a>
-                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" aria-label="Instagram" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);">
+                            <a href="https://www.instagram.com/realitydreamacademy" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);">
                                 <i class="fab fa-instagram text-sm"></i>
                             </a>
-                            <a href="https://www.twitter.com/realitydreamacademy" target="_blank" aria-label="X / Twitter" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition border border-white/30 shadow-sm" style="background: linear-gradient(135deg,#000000,#1f2937);">
+                            <a href="https://www.twitter.com/realitydreamacademy" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition border border-white/30 shadow-sm" style="background: linear-gradient(135deg,#000000,#1f2937);">
                                 <span class="font-bold text-xs tracking-wide">X</span>
                             </a>
-                            <a href="https://wa.me/254722729198" target="_blank" aria-label="WhatsApp" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#25D366,#128C7E);">
+                            <a href="https://wa.me/254722729198" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-9 h-9 rounded-full text-white flex items-center justify-center hover:opacity-90 transition" style="background: linear-gradient(135deg,#25D366,#128C7E);">
                                 <i class="fab fa-whatsapp text-sm"></i>
                             </a>
                         </div>
@@ -441,7 +984,7 @@
                                     <a href="tel:+254722729198" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition w-full">
                                         <i class="fas fa-phone mr-1.5"></i>Call
                                     </a>
-                                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition w-full">
+                                    <a href="https://wa.me/254722729198" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition w-full">
                                         <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
                                     </a>
                                 </div>
@@ -452,7 +995,7 @@
                                     <a href="tel:+254743187154" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition w-full">
                                         <i class="fas fa-phone mr-1.5"></i>Call
                                     </a>
-                                    <a href="https://wa.me/254743187154" target="_blank" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition w-full">
+                                    <a href="https://wa.me/254743187154" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-3 py-1.5 rounded-md text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 transition w-full">
                                         <i class="fab fa-whatsapp mr-1.5"></i>WhatsApp
                                     </a>
                                 </div>
@@ -469,7 +1012,7 @@
                         <p class="text-gray-200 text-sm md:text-base">
                             <i class="fas fa-location-dot mr-2" style="color:#86efac;"></i>Kilifi Town, Ar Rayan Complex, Kenya
                         </p>
-                        <a href="https://www.google.com/maps/search/?api=1&query=Kilifi+Town,+Ar+Rayan+Complex,+Kenya" target="_blank" class="inline-flex items-center text-sm font-semibold" style="color:#86efac;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Kilifi+Town,+Ar+Rayan+Complex,+Kenya" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-sm font-semibold" style="color:#86efac;">
                             <i class="fas fa-location-arrow mr-2"></i>Get Directions
                         </a>
                     </div>
@@ -500,31 +1043,31 @@
 
     <!-- PDF Viewer Modal -->
     <div id="pdfModal" class="hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-screen flex flex-col">
+        <div class="bg-gray-50 rounded-lg shadow-2xl w-full max-w-4xl h-full max-h-screen flex flex-col">
             <!-- Modal Header -->
             <div class="flex justify-between items-center p-4 border-b border-gray-200 bg-gray-50">
                 <h2 class="text-xl font-bold text-gray-800">Reality Dream Institute - Brochure</h2>
-                <button onclick="closePdfViewer()" class="text-gray-500 hover:text-gray-800 text-2xl">
+                <button type="button" onclick="closePdfViewer()" class="text-gray-500 hover:text-gray-800 text-2xl">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <!-- PDF Viewer -->
             <div class="flex-1 overflow-auto">
-                <iframe id="pdfFrame" src="./Bronchure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
+                <iframe id="pdfFrame" src="./Brochure.pdf" type="application/pdf" class="w-full h-full" style="border: none;"></iframe>
             </div>
 
             <!-- Modal Footer with Actions -->
             <div class="flex justify-end items-center gap-3 p-4 border-t border-gray-200 bg-gray-50">
-                <button onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition">
+                <button type="button" onclick="printPdf()" class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition">
                     <i class="fas fa-print"></i>
                     <span>Print</span>
                 </button>
-                <a href="./Bronchure.pdf" download class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
+                <a href="./Brochure.pdf" download rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition">
                     <i class="fas fa-download"></i>
                     <span>Download</span>
                 </a>
-                <button onclick="closePdfViewer()" class="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md transition">
+                <button type="button" onclick="closePdfViewer()" class="flex items-center gap-2 px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-md transition">
                     <i class="fas fa-times"></i>
                     <span>Close</span>
                 </button>
@@ -532,41 +1075,53 @@
         </div>
     </div>
 
-    <div id="chat-toggle" title="Chat with assistant">
+    <div id="chat-toggle" role="button" tabindex="0" aria-label="Open chat" aria-expanded="false" title="Chat with assistant">
         <i class="fas fa-comment-dots"></i>
     </div>
     <div id="chatbot" aria-live="polite">
         <div id="chat-header">
             <span>Reality Dream Assistant</span>
-            <span id="close-chat">Close</span>
+            <span id="close-chat" role="button" aria-label="Close chat" tabindex="0">Close</span>
         </div>
         <div id="chat-body">
             <div class="chat-bot">Hi! How can I help you today?</div>
         </div>
         <div id="chat-input-area">
             <input type="text" id="user-input" placeholder="Type your message...">
-            <button id="chat-send" onclick="sendMessage()">Send</button>
+            <button type="button" id="chat-send" onclick="sendMessage()">Send</button>
         </div>
     </div>
 
-    <script>
+    <script src="announcement-data.js" defer></script>
+    <script>document.addEventListener('DOMContentLoaded', function() {
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function(e) {
+        // Mobile menu toggle with ARIA
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton?.addEventListener('click', function(e) {
             e.stopPropagation();
-            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu) return;
+            const isOpen = !mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            const expanded = String(!isOpen);
+            mobileMenuButton.setAttribute('aria-expanded', expanded);
+            if (!isOpen) {
+                // move focus to first link in menu for keyboard users
+                const firstLink = mobileMenu.querySelector('a, button');
+                firstLink?.focus();
+            } else {
+                mobileMenuButton.focus();
+            }
         });
         
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            
+            if (!mobileMenu) return;
             if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target) && !mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
+                mobileMenuButton?.setAttribute('aria-expanded', 'false');
             }
         });
 
@@ -699,7 +1254,7 @@
             btn.addEventListener('click', function() {
                 // Keep form submit buttons working normally
                 if (btn.closest('form')) return;
-                window.location.href = 'enroll_redirect.php';
+                window.location.href = 'enroll_redirect.html';
             });
         });
         
@@ -786,7 +1341,7 @@
                 text.includes('staff')
             ) {
                 return {
-                    html: "Emergency support: <br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.php' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>",
+                    html: "Emergency support: <br><a href='tel:+254722729198' style='color:#6B3E93;font-weight:600;'>Call Staff: +254 722 729 198</a><br><a href='tel:+254743187154' style='color:#6B3E93;font-weight:600;'>Alternative: +254 743 187 154</a><br><a href='https://wa.me/254722729198' target='_blank' style='color:#377D3E;font-weight:600;'>WhatsApp Customer Care</a><br><a href='contact.html' style='color:#377D3E;font-weight:600;'>Open Contact Page</a>",
                     isHtml: true
                 };
             }
@@ -812,11 +1367,23 @@
 
         chatToggle?.addEventListener('click', function() {
             chatbot.classList.toggle('open');
-            if (chatbot.classList.contains('open')) userInput?.focus();
+            const isOpen = chatbot.classList.contains('open');
+            chatToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            if (isOpen) userInput?.focus();
+        });
+
+        // Allow keyboard activation (Enter / Space) for chat toggle
+        chatToggle?.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                chatToggle.click();
+            }
         });
 
         closeChat?.addEventListener('click', function() {
             chatbot.classList.remove('open');
+            chatToggle.setAttribute('aria-expanded', 'false');
+            chatToggle.focus();
         });
 
         userInput?.addEventListener('keydown', function(e) {
@@ -825,7 +1392,65 @@
                 sendMessage();
             }
         });
-    </script>
+
+
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with fadeInUp class
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+            observer.observe(section);
+        });
+
+        // Animate stats numbers
+        function animateNumbers() {
+            const stats = document.querySelectorAll('.stats-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (stat.textContent.includes('%') ? '%' : '+');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (stat.textContent.includes('%') ? '%' : '+');
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger stats animation when section is visible
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumbers();
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            statsObserver.observe(statsSection);
+        }
+    });</script>
 </body>
 </html>
 

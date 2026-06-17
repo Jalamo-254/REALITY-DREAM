@@ -9,37 +9,135 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #070b13;
-            --card: #0f172a;
-            --line: #243041;
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --muted: #64748b;
+            --border: rgba(148, 163, 184, 0.28);
             --primary: #377d3e;
             --accent: #6b3e93;
-            --warm: #e38822;
+            --dark: #0f172a;
+            --text: #111827;
         }
-        body { font-family: 'Sora', sans-serif; background: var(--bg); color: #e5e7eb; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top left, rgba(55,125,62,.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(107,62,147,.08), transparent 22%),
+                        var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
         .hero-glow {
-            background:
-                radial-gradient(circle at 18% 20%, rgba(55, 125, 62, .30), transparent 35%),
-                radial-gradient(circle at 85% 15%, rgba(107, 62, 147, .30), transparent 38%),
-                linear-gradient(160deg, #0b1220, #111827 55%, #0f172a);
+            background: linear-gradient(160deg, rgba(55,125,62,.12), rgba(107,62,147,.08)), #ffffff;
+            border: 1px solid rgba(107,62,147,.14);
+            border-radius: 32px;
+            box-shadow: 0 28px 80px rgba(15,23,42,.08);
         }
-        .glass-card {
-            background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(10, 17, 32, .98));
-            border: 1px solid var(--line);
-            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+        .hero-tag {
+            display: inline-flex;
+            background: rgba(55, 125, 62, 0.12);
+            color: var(--primary);
+            border-radius: 999px;
+            padding: 0.55rem 1rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
-        .glass-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 34px rgba(0, 0, 0, .35);
-            border-color: rgba(99, 102, 241, .35);
+
+        .hero-title {
+            font-size: clamp(2rem, 3vw, 3.5rem);
+            line-height: 1.04;
+            margin-top: 1rem;
+            max-width: 12ch;
         }
-        .chip.active {
+
+        .hero-copy {
+            max-width: 44rem;
+            margin-top: 1rem;
+            color: #475569;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.95rem 1.75rem;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            box-shadow: 0 18px 40px rgba(55,125,62,.16);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 22px 45px rgba(55,125,62,.2);
+        }
+
+        .btn-secondary {
             background: #ffffff;
-            color: #111827;
-            border-color: #ffffff;
+            color: var(--text);
+            border: 1px solid var(--border);
         }
-        .shop-menu, .course-menu { position: relative; }
-        .shop-dropdown, .course-dropdown {
+
+        .btn-secondary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(15,23,42,.08);
+        }
+
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 55px rgba(15, 23, 42, 0.12);
+            border-color: rgba(55, 125, 62, 0.18);
+        }
+
+        .chip {
+            background: rgba(15, 23, 42, 0.05);
+            color: #334155;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .chip:hover {
+            transform: translateY(-1px);
+            background: rgba(237, 242, 247, 0.9);
+        }
+
+        .chip.active {
+            background: #e0f2fe;
+            color: #0f172a;
+            border-color: #93c5fd;
+        }
+
+        .shop-menu,
+        .course-menu { position: relative; }
+
+        .shop-dropdown,
+        .course-dropdown {
             position: absolute;
             top: calc(100% + 10px);
             left: 0;
@@ -52,13 +150,16 @@
             display: none;
             z-index: 70;
         }
+
         .shop-menu:hover .shop-dropdown,
         .shop-menu:focus-within .shop-dropdown,
         .course-menu:hover .course-dropdown,
         .course-menu:focus-within .course-dropdown {
             display: block;
         }
-        .shop-dropdown a, .course-dropdown a {
+
+        .shop-dropdown a,
+        .course-dropdown a {
             display: block;
             padding: 9px 10px;
             border-radius: 8px;
@@ -67,7 +168,13 @@
             font-weight: 600;
             transition: all .2s ease;
         }
-        .shop-dropdown a:hover, .course-dropdown a:hover { background: #1e293b; color: #86efac; }
+
+        .shop-dropdown a:hover,
+        .course-dropdown a:hover {
+            background: #1e293b;
+            color: #86efac;
+        }
+
         .shop-target { scroll-margin-top: 110px; }
     </style>
 </head>
@@ -89,14 +196,14 @@
                     <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">About</a>
                     <div class="course-menu">
-                        <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-2 text-[10px]"></i></a>
+                        <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm inline-flex items-center">Courses <i class="fas fa-chevron-down ml-2 text-[10px]"></i></a>
                         <div class="course-dropdown">
-                            <a href="programs.php#cctv-installation">CCTV Installation</a>
-                            <a href="programs.php#solar-installation">Solar Installation</a>
-                            <a href="programs.php#entrepreneurship">Entrepreneurship</a>
-                            <a href="programs.php#front-desk-cashier">Front Desk & Cashier</a>
-                            <a href="programs.php#computer-packages">Computer Packages</a>
-                            <a href="programs.php#content-videography">Content & Videography</a>
+                            <a href="programs.html#cctv-installation">CCTV Installation</a>
+                            <a href="programs.html#solar-installation">Solar Installation</a>
+                            <a href="programs.html#entrepreneurship">Entrepreneurship</a>
+                            <a href="programs.html#front-desk-cashier">Front Desk & Cashier</a>
+                            <a href="programs.html#computer-packages">Computer Packages</a>
+                            <a href="programs.html#content-videography">Content & Videography</a>
                         </div>
                     </div>
                     <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Gallery</a>
@@ -114,8 +221,8 @@
                         </div>
                     </div>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Blog</a>
-                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Contact</a>
-                    <a href="enroll_redirect.php" class="transition-all text-white font-semibold py-1.5 px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93;">
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium transition text-sm">Contact</a>
+                    <a href="enroll_redirect.html" class="transition-all text-white font-semibold py-1.5 px-3 rounded-md flex items-center space-x-1 text-xs" style="background-color: #6B3E93;">
                         <i class="fas fa-user-graduate text-xs"></i>
                         <span>Enroll</span>
                     </a>
@@ -132,13 +239,13 @@
                 <div class="flex flex-col space-y-3">
                     <a href="index.html#home" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Home</a>
                     <a href="about.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">About</a>
-                    <a href="programs.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
-                    <a href="programs.php#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
-                    <a href="programs.php#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
-                    <a href="programs.php#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
-                    <a href="programs.php#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
-                    <a href="programs.php#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
-                    <a href="programs.php#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
+                    <a href="programs.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Courses</a>
+                    <a href="programs.html#cctv-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Installation</a>
+                    <a href="programs.html#solar-installation" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Solar Installation</a>
+                    <a href="programs.html#entrepreneurship" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Entrepreneurship</a>
+                    <a href="programs.html#front-desk-cashier" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Front Desk & Cashier</a>
+                    <a href="programs.html#computer-packages" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Computer Packages</a>
+                    <a href="programs.html#content-videography" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Content & Videography</a>
                     <a href="gallery.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Gallery</a>
                     <a href="shop.html" class="text-green-300 font-medium py-1.5 transition text-center text-sm">Shop</a>
                     <a href="#cctv-cameras" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- CCTV Cameras</a>
@@ -150,8 +257,8 @@
                     <a href="#access-control" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Access Control</a>
                     <a href="#installation-tools" class="text-gray-400 hover:text-green-300 font-medium py-1 transition text-center text-xs">- Installation Tools</a>
                     <a href="blog.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Blog</a>
-                    <a href="contact.php" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
-                    <a href="enroll_redirect.php" class="text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93;">
+                    <a href="contact.html" class="text-gray-300 hover:text-green-300 font-medium py-1.5 transition text-center text-sm">Contact</a>
+                    <a href="enroll_redirect.html" class="text-white font-semibold py-2 rounded-md flex items-center justify-center space-x-2 text-sm" style="background-color: #6B3E93;">
                         <i class="fas fa-user-graduate"></i>
                         <span>Enroll Now</span>
                     </a>
@@ -160,23 +267,23 @@
         </div>
     </nav>
 
-    <header class="hero-glow border-b border-slate-800">
+    <header class="hero-glow border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-                <p class="uppercase text-xs tracking-[0.2em] text-green-300 font-semibold mb-3">HAYES ELECTRONICS</p>
-                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight max-w-2xl">Modern Gadget Shop for Security, Solar, and Smart Tech</h1>
-                <p class="mt-4 max-w-2xl text-slate-300">Find trusted gadgets used in our practical training and field installations. Order quickly via WhatsApp or call our team for same-day support in Kilifi.</p>
-                <div class="mt-7 flex flex-wrap gap-3">
-                    <a href="https://wa.me/254722729198" target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background: linear-gradient(135deg,#25D366,#128C7E);">
-                        <i class="fab fa-whatsapp mr-2"></i>Order on WhatsApp
+                <p class="hero-tag">HAYES ELECTRONICS</p>
+                <h1 class="hero-title">Modern Gadget Shop for Security, Solar, and Smart Tech</h1>
+                <p class="hero-copy">Find trusted gadgets used in our practical training and field installations. Order quickly via WhatsApp or call our team for same-day support in Kilifi.</p>
+                <div class="hero-actions mt-7 flex flex-wrap gap-3">
+                    <a href="https://wa.me/254722729198" target="_blank" class="btn-primary inline-flex items-center gap-2">
+                        <i class="fab fa-whatsapp"></i>Order on WhatsApp
                     </a>
-                    <a href="tel:+254743187154" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold border border-slate-500 text-slate-200 hover:text-white hover:border-slate-300">
-                        <i class="fas fa-phone mr-2"></i>Call HAYES ELECTRONICS
+                    <a href="tel:+254743187154" class="btn-secondary inline-flex items-center gap-2">
+                        <i class="fas fa-phone"></i>Call HAYES ELECTRONICS
                     </a>
                 </div>
             </div>
-            <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
-                <img src="Assets/images/shop 1.jpeg" alt="HAYES ELECTRONICS gadget shop display" class="w-full h-[260px] md:h-[340px] object-cover">
+            <div class="rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                <img src="Assets/images/optimized/shop-1.jpeg" alt="HAYES ELECTRONICS gadget shop display" class="w-full h-[260px] md:h-[340px] object-cover">
             </div>
         </div>
     </header>
@@ -192,7 +299,7 @@
 
             <div id="shopGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
                 <article id="cctv-cameras" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
-                    <img src="Assets/images/cctv camera.png" alt="CCTV installation kit" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/cctv-camera.png" alt="CCTV installation kit" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
                         <h3 class="font-bold mt-1">CCTV Camera Kit</h3>
@@ -201,7 +308,7 @@
                 </article>
 
                 <article id="electric-fence" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
-                    <img src="Assets/images/electric fencee.png" alt="Electric fence equipment" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/electric-fencee.png" alt="Electric fence equipment" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
                         <h3 class="font-bold mt-1">Electric Fence Set</h3>
@@ -210,7 +317,7 @@
                 </article>
 
                 <article id="laser-sensors" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
-                    <img src="Assets/images/shop-svg/laser-sensor.svg" alt="Laser security detector" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/lazer-1.jpg" alt="Laser security detector" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
                         <h3 class="font-bold mt-1">Laser Beam Sensor</h3>
@@ -219,7 +326,7 @@
                 </article>
 
                 <article id="solar-panels" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="solar">
-                    <img src="Assets/images/PANEL.jpg" alt="Solar panel in stock" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/panel-1.jpg" alt="Solar panel in stock" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
                         <h3 class="font-bold mt-1">Solar Panel Units</h3>
@@ -228,7 +335,7 @@
                 </article>
 
                 <article class="glass-card rounded-2xl overflow-hidden" data-group="solar">
-                    <img src="Assets/images/PANELS.jpg" alt="Multiple solar panels" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/panels-1.jpg" alt="Multiple solar panels" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
                         <h3 class="font-bold mt-1">Solar Panel Bundles</h3>
@@ -237,7 +344,7 @@
                 </article>
 
                 <article class="glass-card rounded-2xl overflow-hidden" data-group="solar">
-                    <img src="Assets/images/SOLAR INSTA.jpg" alt="Solar installation accessories" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/solar-insta.jpg" alt="Solar installation accessories" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-amber-300 uppercase tracking-wide font-semibold">Solar</p>
                         <h3 class="font-bold mt-1">Solar Inverter & Parts</h3>
@@ -246,7 +353,7 @@
                 </article>
 
                 <article id="installation-tools" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="accessories">
-                    <img src="Assets/images/tool kit.png" alt="Shop accessories shelf" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/tool-kit.png" alt="Shop accessories shelf" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
                         <h3 class="font-bold mt-1">Installers Toolkit</h3>
@@ -255,7 +362,7 @@
                 </article>
 
                 <article class="glass-card rounded-2xl overflow-hidden" data-group="accessories">
-                    <img src="Assets/images/hayess.jpeg" alt="Reality Dream shop stock" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/hayess.jpeg" alt="Reality Dream shop stock" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
                         <h3 class="font-bold mt-1">General Gadget Stock</h3>
@@ -264,7 +371,7 @@
                 </article>
 
                 <article id="key-cutting" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="accessories">
-                    <img src="Assets/images/key cutting machine.png" alt="Key cutting service and accessories" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/key-cutting-machine.png" alt="Key cutting service and accessories" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-purple-300 uppercase tracking-wide font-semibold">Accessories</p>
                         <h3 class="font-bold mt-1">Key Cuttings</h3>
@@ -273,7 +380,7 @@
                 </article>
 
                 <article id="wifi-installation" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
-                    <img src="Assets/images/router.png" alt="WiFi router and installation setup" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/router.png" alt="WiFi router and installation setup" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
                         <h3 class="font-bold mt-1">WiFi Installation</h3>
@@ -282,7 +389,7 @@
                 </article>
 
                 <article id="access-control" class="glass-card rounded-2xl overflow-hidden shop-target" data-group="security">
-                    <img src="Assets/images/access control (1).png" alt="Access control system devices" class="w-full h-52 object-cover">
+                    <img src="Assets/images/optimized/access-control-1.png" alt="Access control system devices" class="w-full h-52 object-cover">
                     <div class="p-4">
                         <p class="text-xs text-emerald-300 uppercase tracking-wide font-semibold">Security</p>
                         <h3 class="font-bold mt-1">Access Control</h3>
@@ -296,11 +403,11 @@
             <h2 class="text-2xl font-extrabold">Need a specific gadget?</h2>
             <p class="text-slate-200 mt-2">Send us the item name and quantity and we will confirm stock plus delivery options.</p>
             <div class="mt-5 flex flex-wrap gap-3">
-                <a href="https://wa.me/254722729198?text=Hello%20Reality%20Dream%20Shop%2C%20I%20want%20to%20buy%20a%20gadget." target="_blank" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background-color: #25D366;">
-                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp Shop
+                <a href="https://wa.me/254722729198?text=Hello%20Reality%20Dream%20Shop%2C%20I%20want%20to%20buy%20a%20gadget." target="_blank" class="btn-primary inline-flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i>WhatsApp Shop
                 </a>
-                <a href="contact.php" class="inline-flex items-center px-5 py-2.5 rounded-md font-semibold text-white" style="background-color: #6B3E93;">
-                    <i class="fas fa-envelope mr-2"></i>Request by Email
+                <a href="contact.html" class="btn-secondary inline-flex items-center gap-2">
+                    <i class="fas fa-envelope"></i>Request by Email
                 </a>
             </div>
         </section>
@@ -316,9 +423,9 @@
                 <div>
                     <h3 class="text-base md:text-lg font-bold mb-2">Shop Links</h3>
                     <div class="space-y-1 text-sm">
-                        <a href="programs.php" class="block text-gray-300 hover:text-green-300">Courses</a>
+                        <a href="programs.html" class="block text-gray-300 hover:text-green-300">Courses</a>
                         <a href="gallery.html" class="block text-gray-300 hover:text-green-300">Gallery</a>
-                        <a href="contact.php" class="block text-gray-300 hover:text-green-300">Contact</a>
+                        <a href="contact.html" class="block text-gray-300 hover:text-green-300">Contact</a>
                     </div>
                 </div>
                 <div>
